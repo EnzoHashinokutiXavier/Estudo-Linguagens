@@ -1,0 +1,101 @@
+&& = "e"
+(x && y)
+se x = True e Y = True, resultado = True
+se algum ou os dois for False, resultado = False
+
+|| = "ou"
+(x || y)
+se x ou y ou ambos = True, resultado = True
+se nenhum for True, resultado = False
+
+! inverte sinal
+se x = True, !x = False
+se x = False, !x = True
+
+== igual
+!= diferente
+++ soma 1
+-- subtrai 1
+
+
+int x
+if (y)
+{
+    x = 5;
+}
+else 
+{
+    x = 6;
+}
+é a mesma coisa que
+int x = (y) ? 5 : 6;
+?: ajuda a diminuir o codigo e facilitar
+primeiro valor se for verdadeiro segundo se for 
+
+
+while(x)
+enquanto x for veradeiro acontece o loop
+
+do
+{
+
+}
+while(x);
+acontece uma vez e repete se x for verdadeiro
+
+for(int i = 0; i < 10; i++)
+{
+
+}
+define i como 0, enquanto i menor que 10, i aumenta um a cada loop
+
+rm = excluir arquivo
+rm program1.c
+
+ls = arquivos
+ex:
+PS C:\programas> ls
+
+
+    Diretório: C:\programas
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        07/04/2025     16:47                .vscode
+d-----        15/04/2025     14:37                CS50
+d-----        08/04/2025     09:38                Curso em vídeo
+d-----        07/04/2025     10:47                Eng de Software
+d-----        07/04/2025     10:54                outros
+d-----        07/04/2025     10:47                SuperMarketGame
+
+
+#define NAME REPLACEMENT
+ex
+#define PI 3.14
+
+
+& -> localização
+* -> ponteiro
+ex 
+int *p = &n
+
+
+char *s = get_string("s : ");
+char *t = s;
+t e s apontam para o mesmo espaço na memoria, oq eu alterar em t, altera em se
+
+porem
+
+#include<stdlib.h>           // malloc
+char *t = malloc(strlen(s) + 1); 
+t agora aponta para um espaço na memoria do mesmo tamanho de s
+if (t == NULL)  // se o malloc falhar
+{
+    return 1;
+}
+for(i = 0, n = strlen(s); i <= n; i++){
+    t[i] = s[i];
+}
+s é copiado em t inteiramente (ate o \0)
+free(t); // libero o espaço de t
