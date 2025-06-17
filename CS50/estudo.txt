@@ -81,6 +81,14 @@ ex
 int *p = &n
 
 
+a = 50;
+*p = &a;
+&a vejo a localização de a
+p armazena informação da localização de a 
+*p aponta para oque esta dentro de a
+se eu altero o valor de *p, tambem altero valor de a
+
+
 char *s = get_string("s : ");
 char *t = s;
 t e s apontam para o mesmo espaço na memoria, oq eu alterar em t, altera em se
@@ -99,3 +107,23 @@ for(i = 0, n = strlen(s); i <= n; i++){
 }
 s é copiado em t inteiramente (ate o \0)
 free(t); // libero o espaço de t
+
+
+fopen abre um arquivo para leitura ou escrita
+fclose fecha o arquivo
+
+FILE *input = fopen("arquivo.txt", "r");
+    /nome da variavel              /argumento
+argumentos :
+r para ler 
+w para escrever 
+rb e wb para arquivos em binario
+
+fread le um dado de um arquivo e deixa em um buffer
+fwrite escreve um dado de um buffer no arquivo
+buffer = espaço de memoria temporario que armazena informação de um arquivo
+              /tamanho do bloco (byte)
+fread(buffer, 1, 4, input);
+    /variavel   /quantos blocos deseja ver
+
+fwrite(buffer, 1, 4, output);

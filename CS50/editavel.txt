@@ -1,2 +1,8 @@
 Nome : Enzo
 Idade : 15
+Nome : Xavier
+Idade : 22
+Nome : Hashinokuti
+Idade : 54
+Nome : EHx
+Idade : 123

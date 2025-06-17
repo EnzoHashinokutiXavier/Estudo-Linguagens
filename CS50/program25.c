@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main(){
+int main(){
     char *Nome [50];
     int Idade;
 
@@ -15,5 +15,5 @@ void main(){
         return 1;
     }
 
-    fprintf(arquivo, "Nome : %s\nIdade : %i", Nome, Idade);  // escreve no arquivo
+    fprintf(arquivo, "\nNome : %s\nIdade : %i", Nome, Idade);  // escreve no arquivo
 }
