@@ -174,3 +174,18 @@ const amigos = ['Lauri', 'Paulo', 'Luis']
 for(let i of amigos)
     console.log(i)
 
+// biblioteca math tem varios recursos matematicos
+console.log(Math.max(1, 15, 3, 20, 2))  // mostra maior numero na lista
+
+// String, outros recursos uteis
+let frase = 'Oie, sou o Enzo'
+console.log(frase.startsWith('Oie')) // true
+// lenght = tamanho ; includes('') = inclui; endsWith('') = termina
+
+
+let nome = 'Enzo'
+// aspas
+console.log("Ola, " +nome+ " !\nTudo bem ?")
+// crase
+console.log(`Ola ${nome} !
+    Tudo bem ?`)
