@@ -189,3 +189,85 @@ console.log("Ola, " +nome+ " !\nTudo bem ?")
 // crase
 console.log(`Ola ${nome} !
     Tudo bem ?`)
+
+
+// Array
+const numeros = [4, 5, 6]
+console.log(numeros)
+
+// Adicionar final
+numeros.push(7, 8, 9)
+
+// Adicionar no começo
+numeros.unshift(1, 2, 3)
+
+// Adicionar no meio
+numeros.splice(3, 0, 10, 11, 12)  // index(inicio, oq eu vou deletar (0), numeros a add
+
+// Retirar ultimo numero
+const final = numeros.pop()
+
+// Retirar primeiro da lista
+const final2 = numeros.shift()
+
+// Retirar com splice
+const final3 = numeros.splice(2, 1)  // a partir do dois, remover um item
+
+// Encontrar posiçao de algo
+console.log(numeros.indexOf(4))  // localizaçao de 4
+console.log(numeros.includes(8))  // se há 8
+
+// Encontrar algo que nao seja valor primitivo
+const filmes = [
+    {id: 1, nomeFilme: 'Como treinar seu dragão'},
+    {id: 2, nomeFilme: 'Lilo e Stitch'},
+    {id: 3, nomeFilme: 'Avatar'}
+]
+console.log(filmes.find(function(filmes){
+    return filmes.nomeFilme == 'Avatar'
+}))
+
+// mais curto e bonito
+console.log(filmes.find(filmes => filmes.nomeFilme == 'Avatar'))
+
+// Zerar array
+let numerais = [1, 2, 3, 4, 5]
+numerais = []   // vazia
+numerais.length = 0  // tamanho zerado
+numerais.splice(0, numerais.length)  // a partir do zero, lompar tudo ate tamanho da array
+
+// Juntar Array
+let letras = ['a', 'b', 'c']
+let numerais = [1, 2, 3, 4, 5]
+todos = numerais.concat(letras)  // contatenar é juntar
+parte = todos.slice(3, 5)  // a partir do 3, parando em 5(ate 4)
+
+// Adicionar a uma array
+let nomes = ['Enzo', 'Paulo', 'Karen', 'Laurielli']
+let nomesNovo = nomes.join(', ')
+console.log(nomesNovo)
+
+// Organizar de forma alfabetica
+nomes.sort()
+console.log(nomes)
+
+// Inverter ordem
+nomes.reverse()
+console.log(nomes)
+
+// Verificar se todos numeros atendem uma condição
+let temperaturas = [10, 34, 45, 0, -1, -10, 20]
+let temperaturasPositivas = temperaturas.every(function(valor) {
+    return valor >= 0
+})
+console.log(temperaturasPositivas)
+
+// Retornar valores que atendem uma condiçao 
+let temperaturas2 = [10, 34, 45, 0, -1, -10, 20]
+let temperaturasPositivas2 = temperaturas2.filter(function(valor) {
+    return valor >= 0
+})
+console.log(temperaturasPositivas2)
+// ou
+temperaturasPositivas2 = temperaturas2.filter(valor => valor >= 0)
+console.log(temperaturasPositivas2)
