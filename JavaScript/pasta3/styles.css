@@ -1,11 +1,11 @@
 h1{
-    color: blue;
+    color: rgb(0, 221, 255);
     font-size: 70px;
     text-align: center;
 }
 
 h2{
-    color: blue;
+    color: rgb(0, 221, 255);
     font-size: 70px;
     text-align: center;
 }
@@ -14,4 +14,8 @@ h3{
     color: yellow;
     font-size: 100px;
     text-align: center;
+}
+
+body{
+    background-color: black
 }
