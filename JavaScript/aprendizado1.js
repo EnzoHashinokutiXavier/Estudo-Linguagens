@@ -271,3 +271,46 @@ console.log(temperaturasPositivas2)
 // ou
 temperaturasPositivas2 = temperaturas2.filter(valor => valor >= 0)
 console.log(temperaturasPositivas2)
+
+
+// Function Declaration
+function filme(){
+    console.log('Como treinar seu dragão')
+}
+filme()  // Funciona ser colocar antes da function
+// O java script coloca as funções para cima, para serem excutadas antes do codigo, podendo declaralas embaixo de quando chamadas
+
+// Function Expression
+const carro = function(){
+    console.log('Ford')
+}
+carro()  // Não funciona se invertido a ordem
+const caminhao = carro
+caminhao()
+
+
+// Acessar valor dos argumentos
+function pressos(){
+    let total = 0
+    for(let valor of arguments)
+        total += valor
+    return total
+}
+let x = pressos(10, 20, 30)
+console.log(x)   // 60
+
+
+// Declarar variavel no () da função
+function emprestimo(valor, aumentoPorcent = 1, meses = 5){
+    return (valor + (((valor / 100) * aumentoPorcent)*meses))
+}
+console.log(emprestimo(100))
+
+
+// Arredondamento para cima, mantendo duas casas decimais
+function formatarDinheiro(valor){
+    valor = Math.ceil(valor * 100)/100
+    valor = valor.toFixed(2)
+    return '$' + valor
+}
+console.log(formatarDinheiro(123.456))
