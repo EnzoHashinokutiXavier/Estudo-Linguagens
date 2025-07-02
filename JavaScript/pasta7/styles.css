@@ -18,10 +18,11 @@ html {
     font-size: 3rem;
     margin: 0;
     padding-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.912);
   }
   
   section {
-    background-color: rgb(160, 192, 244);
+    background-color: rgb(255, 217, 159);
     font-size: 1.8rem;
     margin-bottom: 1.6rem;
     padding: 0 1.6rem;
@@ -97,5 +98,5 @@ html {
   }
 
   body{
-    background-color: #f0e902e6;
+    background-color: #33b5c9e6;
   }
