@@ -5,3 +5,6 @@ void main(){
     string palavra[] = {"olaa"};
     printf("%s", palavra[0]);
 }
+
+// Ex: mudar a estrutura carro em car
+// typedef struct carro car

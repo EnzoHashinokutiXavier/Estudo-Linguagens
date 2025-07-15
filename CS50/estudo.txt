@@ -127,3 +127,19 @@ fread(buffer, 1, 4, input);
     /variavel   /quantos blocos deseja ver
 
 fwrite(buffer, 1, 4, output);
+
+
+Dynamic Memory Allocation
+malloc() com o parametro de numero de bytes necessarios
+apos obter o espaço na memoria, malloc vai retornar um ponteiro para aquele espaço
+se malloc() nao pode dar um espaço de memoria, retorna NULL
+!!! Toda vez que usar malloc verifique se o ponteiro é NULL
+
+Quando voce fecha uma função e o programa volta a main, todo espaço utilizado para a função é liberado para ser
+alocado novos valores, mas quando se usa malloc o espaço não é devolvido
+Quando terminar de trabalhar com dynamic memory allocation, libere o espaço reservado com free()
+Caso contrario ocorrera um vazamento de memoria que pode ser devastador
+
+Todo malloc() precisa ser finalizado com um free()
+Apenas memoria de malloc() se usa free()
+Nao use free() em um bloco de memoria mais de uma vez
