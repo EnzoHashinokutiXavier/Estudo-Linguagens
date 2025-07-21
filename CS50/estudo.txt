@@ -109,8 +109,36 @@ s é copiado em t inteiramente (ate o \0)
 free(t); // libero o espaço de t
 
 
-fopen abre um arquivo para leitura ou escrita
+Dynamic Memory Allocation
+malloc() com o parametro de numero de bytes necessarios
+apos obter o espaço na memoria, malloc vai retornar um ponteiro para aquele espaço
+se malloc() nao pode dar um espaço de memoria, retorna NULL
+!!! Toda vez que usar malloc verifique se o ponteiro é NULL
+
+Quando voce fecha uma função e o programa volta a main, todo espaço utilizado para a função é liberado para ser
+alocado novos valores, mas quando se usa malloc o espaço não é devolvido
+Quando terminar de trabalhar com dynamic memory allocation, libere o espaço reservado com free()
+Caso contrario ocorrera um vazamento de memoria que pode ser devastador
+
+Todo malloc() precisa ser finalizado com um free()
+Apenas memoria de malloc() se usa free()
+Nao use free() em um bloco de memoria mais de uma vez
+
+standard io .h
+fopen()
+fclose()
+fgetc()
+fputc()
+fread()
+fwrite()
+Todos, exceto o fopen(), aceitam FILE* como um dos parametros 
+
+fopen abre um arquivo e retorna um ponteiro para ele, sempre verifique se nao recebeu NULL
+FILE* ptr = fopen(<filename>,<operation>);
+FILE* ptr1 = fopen("file1.txt", "r");
+
 fclose fecha o arquivo
+fclose(<filename>);
 
 FILE *input = fopen("arquivo.txt", "r");
     /nome da variavel              /argumento
@@ -128,18 +156,36 @@ fread(buffer, 1, 4, input);
 
 fwrite(buffer, 1, 4, output);
 
+fread() - arquivo aberto em r
+le <qty> unidades de tamanho <size> do arquivo apontado e as armazena em um buffer (geralmente uma array) apontado por <buffer>
+fread(<buffer>, <size>, <qty>, <file pointer>)
+int ar[10];
+fread(ar, sizeof(int), 10, ptr)
+char c;
+fread(&c, sizeof(char), 1, ptr)
 
-Dynamic Memory Allocation
-malloc() com o parametro de numero de bytes necessarios
-apos obter o espaço na memoria, malloc vai retornar um ponteiro para aquele espaço
-se malloc() nao pode dar um espaço de memoria, retorna NULL
-!!! Toda vez que usar malloc verifique se o ponteiro é NULL
+fgetc() retorna o proximo caractere do ponto indicado
+char ch = fgetc(<filepointer>);
+char ch = fgetc(ptr1);
 
-Quando voce fecha uma função e o programa volta a main, todo espaço utilizado para a função é liberado para ser
-alocado novos valores, mas quando se usa malloc o espaço não é devolvido
-Quando terminar de trabalhar com dynamic memory allocation, libere o espaço reservado com free()
-Caso contrario ocorrera um vazamento de memoria que pode ser devastador
+EOF = end of file
 
-Todo malloc() precisa ser finalizado com um free()
-Apenas memoria de malloc() se usa free()
-Nao use free() em um bloco de memoria mais de uma vez
+arquivo aberto em r
+char ch;
+while ((ch = fgetc(ptr)) != EOF)
+    printf("%c", ch);
+
+arquivo aberto em w
+fputc(<character>, <filepointer>);
+
+copiar um arquivo para outro
+while ((ch = fgetc(ptr)) != EOF)
+    fputc(ch, ptr2)
+
+fgets() le uma string inteira de um arquivo
+fputs() escreve uma string inteira num arquivo
+fprintf() escreve uma string formatada a um arquivo
+fseek() mover onde voce esta no arquivo pra frente ou pra tras
+ftell() diz qual posiçao (byte) do arquivo voce esta
+feof() diz se voce leu ate o final do arquivo
+ferror() indica se ouve um erro ao mexer no arquivo
