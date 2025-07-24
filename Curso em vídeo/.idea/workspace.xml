@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="766497ae-7b9b-427b-895a-8b25f6a304b5" name="Changes" comment="" />
+    <list default="true" id="766497ae-7b9b-427b-895a-8b25f6a304b5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Curso em vídeo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Curso em vídeo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Eng de Software/MarketVision" beforeDir="false" afterPath="$PROJECT_DIR$/../Eng de Software/MarketVision" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaScript/pasta5" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaScript/pasta5" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +23,9 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -45,7 +55,9 @@
     "Python.teste.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Programas/Curso em vídeo",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/programas/outros/guardrail",
     "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
 }]]></component>
