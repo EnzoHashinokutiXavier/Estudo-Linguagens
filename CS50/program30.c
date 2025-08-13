@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Pilha (STACK) - Last in First out
+
 // Defino estrutura do nó
 typedef struct no{
     int numero;
@@ -45,7 +47,7 @@ int main(){
     // Loop que percorre toda a lista encadeada
     for(no *ponteiro = inicio; ponteiro != NULL; ponteiro = ponteiro->proximo){
         // Escreve na tela o número armazenado e o endereço do próximo nó
-        printf("Numero : %d\nLocalizacao : %p\n", ponteiro->numero, (void*)ponteiro->proximo);
+        printf("Numero : %d\nLocalizacao : %p\n", ponteiro->numero, (void*)ponteiro);
     }
 
     // Libera o espaço de memória alocado para cada nó
