@@ -1,0 +1,58 @@
+PS C:\programas\CS50> sqlite3 lista3.db
+sqlite> .schema
+CREATE TABLE IF NOT EXISTS "lista3"(
+"nome" TEXT, "telefone" TEXT);
+
+sqlite> SELECT * FROM lista3;  
+Enzo|12345
+Paulo|2345678
+Luiz|8922
+
+sqlite> SELECT * FROM lista3;
+Enzo|12345
+Paulo|2345678
+Luiz|8922
+
+sqlite> SELECT nome FROM lista3;
+Enzo
+Paulo
+Luiz
+
+sqlite> SELECT COUNT(*) FROM lista3;
+3
+
+sqlite> SELECT DISTINCT telefone FROM lista3;
+12345
+2345678
+8922
+
+sqlite> SELECT COUNT(DISTINCT telefone) FROM lista3;
+3
+
+sqlite> SELECT COUNT(*) FROM lista3 WHERE nome = 'Enzo';
+1
+sqlite> SELECT COUNT(*) FROM lista3 WHERE nome = 'Enzo' AND telefone = '12345';
+1
+sqlite> SELECT COUNT(*) FROM lista3 WHERE nome = 'Enzo' AND telefone = '1234'; 
+0
+
+... frase LIKE 'Hello, %';
+conta tudo oque começar com -Hello, -
+
+sqlite> SELECT nome, COUNT(*) FROM lista3 GROUP BY nome;
+Enzo|1
+Luiz|1
+Paulo|1
+
+sqlite> SELECT nome, COUNT(*) FROM lista3 GROUP BY nome ORDER BY COUNT(*);
+Enzo|1
+Luiz|1
+Paulo|1
+
+sqlite> SELECT nome, COUNT(*) AS n FROM lista3 GROUP BY nome ORDER BY n DESC ;
+Paulo|1
+Luiz|1
+Enzo|1
+
+sqlite> SELECT nome, COUNT(*) AS n FROM lista3 GROUP BY nome ORDER BY n DESC LIMIT 1;
+Paulo|1

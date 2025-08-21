@@ -1,0 +1,18 @@
+# Principais ações
+
+
+# Funções
+AVG
+DISTINCT
+LOWER
+MAX
+MIN
+UPPER
+...
+
+GROUP BY
+LIKE
+LIMIT
+OREDER BY
+WHERE
+...

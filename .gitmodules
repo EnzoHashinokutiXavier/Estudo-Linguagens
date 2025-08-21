@@ -1,0 +1,3 @@
+[submodule "ScripturaAI"]
+	path = ScripturaAI
+	url = https://github.com/EnzoHashinokutiXavier/Scriptura.AI.git
