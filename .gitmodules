@@ -1,6 +1,3 @@
-[submodule "ScripturaAI"]
-	path = ScripturaAI
-	url = https://github.com/EnzoHashinokutiXavier/Scriptura.AI.git
 [submodule "CS50/gptTeologo"]
 	path = CS50/gptTeologo
 	url = https://github.com/EnzoHashinokutiXavier/ProfessorTeologo_Python

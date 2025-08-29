@@ -3,6 +3,8 @@ sqlite> .schema
 CREATE TABLE IF NOT EXISTS "lista3"(
 "nome" TEXT, "telefone" TEXT);
 
+CREATE TABLE IF NOT EXISTS lista3 (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, telefone TEXT NOT NULL);
+
 sqlite> SELECT * FROM lista3;  
 Enzo|12345
 Paulo|2345678
@@ -56,3 +58,31 @@ Enzo|1
 
 sqlite> SELECT nome, COUNT(*) AS n FROM lista3 GROUP BY nome ORDER BY n DESC LIMIT 1;
 Paulo|1
+
+sqlite> INSERT INTO lista3 (nome, telefone) VALUES ('Bruno', '9801');
+sqlite> SELECT * FROM lista3;
+Enzo|12345
+Paulo|2345678
+Luiz|8922
+Bruno|9801
+
+#### NUNCA FAÇA ISSO !!!!####
+DELETE FROM lista3;
+#### APAGA TUDO###
+
+sqlite> INSERT INTO lista3 (nome) VALUES ('Joao');                   
+sqlite> SELECT * FROM lista3;
+Enzo|12345
+Paulo|2345678
+Luiz|8922
+Bruno|9801
+Joao|
+sqlite> DELETE FROM lista3 WHERE telefone IS NULL;
+sqlite> SELECT * FROM lista3;
+Enzo|12345
+Paulo|2345678
+Luiz|8922
+Bruno|9801
+
+#### Se quiser mudar todas informações###
+UPDATE lista3 SET nome = 'Kenzo', numero = '6666';
