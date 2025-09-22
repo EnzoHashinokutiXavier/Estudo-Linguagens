@@ -7,6 +7,15 @@ x||y verdadeiro se x ou y for verdade
 ```
 #include <cstdio> 
 ```
+### Receber
+```
+#include <cstdio>
+```
+```
+gets(variavel)
+```
+
+
 ### Cópia
 Copia o valor de uma string
 ```

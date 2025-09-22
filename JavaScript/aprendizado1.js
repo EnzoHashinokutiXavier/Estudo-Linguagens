@@ -46,7 +46,7 @@ pessoa.pessoaViva = false  // morreu otario
 console.log(pessoa)
 
 
-let friends = ['Paulo', 69, 'Jao', true, 'Gustablo', 'Enzosigma', true]
+let friends = ['Paulo', 18, 'Jao', true, 'Gustavo', 'Enzo', true]
 console.log(friends)
 console.log(friends[2])
 
@@ -169,7 +169,7 @@ for(let i in meucarro)
 
 
 // for of loop
-const amigos = ['Lauri', 'Paulo', 'Luis']
+const amigos = ['Joao', 'Paulo', 'Luis']
 
 for(let i of amigos)
     console.log(i)
@@ -243,7 +243,7 @@ todos = numerais.concat(letras)  // contatenar é juntar
 parte = todos.slice(3, 5)  // a partir do 3, parando em 5(ate 4)
 
 // Adicionar a uma array
-let nomes = ['Enzo', 'Paulo', 'Karen', 'Laurielli']
+let nomes = ['Enzo', 'Paulo', 'Karen', 'Joao']
 let nomesNovo = nomes.join(', ')
 console.log(nomesNovo)
 
