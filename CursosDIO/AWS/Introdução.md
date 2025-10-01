@@ -1,0 +1,38 @@
+# _Domínio 1 : Conceitos de Nuvem_
+
+## Introdução
+
+- Regiões : Área geográfica com conjunto de data centers da AWS (servidores, redes, armazenamentos, outros recursos de TI)
+
+- Zona de Disponibilidade : parte isolada de uma região com um ou mais data centers, conectados por redes de alta velocidade e baixa latência
+
+## **Benefícios**
+
+- Economia de custos
+
+    - Comprar e manter servidores
+
+    - Consumo conforme demanda
+
+- Infraestrutura Global
+
+    - Velocidade de Implantação
+
+    - Alcance Global
+
+- Alta Disponibilidade, Elasticidade e Agilidade
+
+    - Recursos de TI sempre acessíveis e operacionais
+
+    - Redundancia : Seus recursos são replicados em várias zonas de disponibilidade de uma região ou em várias regiões
+
+    - Balanceamento : Recursos distribuidos em várias instancias (copias virtuais dos servidores)
+
+    - Backup : Dados copiados e armazenados em locais seguros
+
+    - Recuperação : recursos restaurados rapidamente em caso de falha
+
+    - Elasticidade : Recursos se adaptam as mudanças de demanda
+
+    - Agilidade : Recursos de TI podem ser lançados, modificados ou encerrados em questão de minutos
+
