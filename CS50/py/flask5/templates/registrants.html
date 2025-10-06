@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block corpo %}
+    <!--
+    <ul>
+        {% for name in registrants %}
+            <li>{{ name }}</li>
+        {% endfor %}
+    </ul>
+    -->
+    <h1>Registrants</h1>
+    <table>
+        <thead>
+            <th>Name</tr>
+            <th>Sports</th>
+        </thead>
+        <tbody>
+            {% for name in registrants %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ registrants[name] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
