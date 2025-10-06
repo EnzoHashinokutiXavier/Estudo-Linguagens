@@ -47,7 +47,7 @@ As capacidades do AWS CAF fornecem orientações de práticas recomendadas que a
 - Operações : garantir que seus serviços de nuvem sejam entregues em um nível que atenda às necessidades de sua empresa
     - líderes de infraestrutura e operações, engenheiros de confiabilidade do local e gerentes de serviços de tecnologia da informação
 
-## Estrategias de migração para nuvem AWS (7)
+## Estrategias de migração para nuvem AWS (7 Rs)
 
 Estrategias de migração são métodos que ajudam a planejar, executar e validar a migração para nuvem AWS
 
@@ -65,3 +65,28 @@ Estrategias de migração são métodos que ajudam a planejar, executar e valida
     - Envolvimento de mudanças na arquitetura do aplicativo para atender a objetivos de negócios e plataformas de destino
 - Refactor or Re-architect (Refatorar ou Rearquitetar) : Modificar a arquitetura do aplicativo ao move-lo para nuvem, aproveitando os recursos nativos para melhorar agilidade, desempenho e escalabilidade
     - Útil para aplicativos legados, monolíticos ou difíceis de manter, visando aprimorar testes, segurança e escalabilidade
+
+A escolha da estrategia de migtração adequada depende de vários fatores, como o tipo, a complexidade e a criticidade dos workloads, os objetivos, os requisitos e as restrições de negócios, o tempo, o custo e o risco da migração, e o nível de maturidade e prontidão para a nuvem. 
+
+Não existe uma estratégia de migração única que se aplique a todos os casos. Você pode usar uma combinação de estratégias de migração para diferentes workloads, de acordo com as suas necessidades e prioridades. 
+
+A AWS oferece ferramentas e serviços que podem ajudar você a avaliar, planejar e executar a sua migração, como o AWS Migration Hub, o AWS Application Discovery Service, o AWS Server Migration Service, o AWS Database Migration Service, o AWS CloudEndure Migration e o AWS Snow Family. 
+
+### Exemplo de estratégias de migração para nuvem AWS
+
+- Rehosting : mover worloads da infraestrutura atual para nuvem AWS
+    - migrar dados de forma rápida, segura, sem interromper as operações do seu banco de dados
+    - replicação de banco de dados - copiar dados locais para nuvem
+        - Por exemplo, você pode replicar os dados de um banco de dados Oracle local para um banco de dados Oracle na nuvem AWS, usando o serviço AWS Database Migration Service, ou AWS DMS.
+- Replataforming : modificar workloads antes de movê-los para a nuvem AWS
+    - como alterar o sistema operacional, o banco de dados ou o middleware
+    - Um cenário comum de replatforming é o uso do AWS Snowball, que é um dispositivo físico que permite transferir grandes volumes de dados para a nuvem AWS, sem a necessidade de usar a internet.
+    - O AWS Snowball é útil para workloads que têm requisitos de largura de banda, tempo ou segurança que não podem ser atendidos pela transferência de dados pela rede.
+        - Por exemplo, você pode usar o AWS Snowball para migrar dados de um data center local para o Amazon S3, o serviço de armazenamento de objetos da AWS. O AWS Snowball criptografa os dados, comprime os dados e otimiza os dados para a transferência.
+    - Você pode solicitar um ou mais dispositivos AWS Snowball pelo console da AWS, copiar os dados para o dispositivo, e enviá-lo de volta para a AWS. A AWS então carrega os dados para o Amazon S3 e apaga os dados do dispositivo.
+- Refactoring : redesenhar workloads para se adaptarem aos recursos e serviços nativos da nuvem AWS
+    - como o Amazon Lambda, o Amazon API Gateway e o Amazon DynamoDB
+    - Um cenário comum de refactoring é o uso do Amazon Lambda, que é um serviço que permite executar código sem precisar provisionar ou gerenciar servidores.
+    - O Amazon Lambda é útil para workloads que têm requisitos de escalabilidade, performance e custo que não podem ser atendidos pela execução de código em servidores tradicionais.
+        - Por exemplo, você pode usar o Amazon Lambda para criar uma função que processa imagens enviadas para o Amazon S3, aplicando filtros, redimensionando ou adicionando marcas d’água.
+    - O Amazon Lambda executa o código da função sempre que um evento é acionado, como o upload de uma imagem para o Amazon S3. Você paga apenas pelo tempo de computação que você consome, sem pagar nada quando o código não está sendo executado.

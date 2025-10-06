@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block corpo %}
+
+    Hello,
+    {% if name &}
+        {{ name }}
+    {% else %}
+        world
+    {% endif %}
+
+{% endblock %}
+
+<!--Sintaxe if else no Jinja-->

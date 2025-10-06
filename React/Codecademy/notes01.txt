@@ -1,0 +1,81 @@
+JSX
+Uma unidade basica de JSX é chamado de JSX element
+Oque diferencia o JSX do HTML é ser encontrado em um arquivo javascript
+ex : 
+let p1 = <p>foo</p>;
+
+const blog = (
+  <div>
+  <img src="pics/192940u73.jpg" />
+  <h1>
+    Welcome to Dan's Blog!
+  </h1>
+  <article>
+    Wow I had the tastiest sandwich today. I <strong>literally</strong> almost freaked out.
+  </article>
+  </div>
+);
+   
+deve estar tudo dentro de um unico bloco, nesse caso o <div></div>
+
+
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<h1>Hello world</h1>);
+
+
+    const container = document.getElementById('app');
+Usa o objeto document que representa a pagina web
+Usa o metodo getElementById() do document para obter o objeto que representa o elemento HTML 
+com o id passado ('app').
+Armazena o elemento em container
+
+    const root = createRoot(container)
+createRoot() da biblioteca react-dom/client
+nesse caso cria rota container e armazena em root
+root pode ser usado para renderizar uma expressão JSX
+
+  root.render(<h1>Hello world</h1>)
+Usa o metodo render() de root para renderizar o conteudo passado pelos argumentos
+Aqui usa o elemento <h1> que escreve Hello world
+Essa é a parte do que renderizar da renderização do react 
+O root do React renderiza denovo apenas aquilo que foi alterado
+
+Alguns atributos do HTML por serem iguais a palavras exclusivas do JS, são substituidas
+Pode ser usado javascript comum dentro de JSX por {}
+Não pode usar If e Else dentro do JSX, só fora
+
+
+
+const headline = (
+  <h1>
+    { age >= drinkingAge ? 'Buy Drink' : 'Do Teen Stuff' }
+  </h1>
+);
+
+x ? y : z
+se x verdadeiro, retorna y, senao z
+
+
+{ !baby && <li>Pizza</li> }
+se do lado esquerdo do && for verdade, o lado direito é renderizado
+
+
+
+  Criar lista, tendo cada elemento uma key
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+const people = ['Rowe', 'Prevost', 'Gare'];
+
+const peopleList = people.map((person,i) =>
+  // expression goes here:
+  <li key = {'person_'+i}>{person}</li>
+);
+
+// root.render goes here:
+root.render(<ul>{peopleList}</ul>);

@@ -1,0 +1,11 @@
+PS C:\programas\CS50\py> mkdir flask1
+
+PS C:\programas\CS50\py> cd .\flask1\
+
+PS C:\programas\CS50\py\flask1> code app.py
+
+PS C:\programas\CS50\py\flask1> code requirements.txt
+
+PS C:\programas\CS50\py\flask1> pip install -r requirements.txt
+
+PS C:\programas\CS50\py\flask1> flask run
