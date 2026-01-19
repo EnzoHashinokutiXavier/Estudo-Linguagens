@@ -50,7 +50,9 @@
 
 normalmente não se envia arquivos diretamente para bucket
 mas envia de algum serviço da aws através de algum software, api ou app para o S3  
-ex : servidor envia via api backup do banco de dados
+ex : servidor envia via api backup do banco de dados  
+
+só dá para deletar uma bucket se ela estiver vazia
 
 
 ### Classes de armazenamento
@@ -161,3 +163,37 @@ Mover entre classes você paga
     - 10 tera no standard = 235 dol por mês  
     - no deep archive = 10 dol por mês
     - no one zone = 102 dol por mês
+
+### Versionamento
+
+- Permite manter várias versões do mesmo objeto
+
+- Quando deleta um arquivo, somente esconde o arquivo
+    - delete marker
+    - marker falando que foi deletado
+    - se remover o delete marker ele volta
+
+- Life cicle configuration
+    - objetos removidos em certo tempo sem alteração
+
+- É cobrado o preço por cada versão do arquivo
+
+### Replication
+
+- replicar arquivos de uma bucket em outra
+
+- Cross Region Replication (CRR)
+    - exemplo : objeto no US copiado numa bucket de UK
+
+- Same Region Replication (SRR)
+
+- versionamento deve estar ativado nas duas buckets
+
+- filtro do que é replicado
+
+- Job
+    - acontece em cross region
+    - tarefa para executar a replicação
+    - fala em json oq foi feito e copiado
+
+- arquivo duplicado paga dobrado
