@@ -80,3 +80,41 @@ Pops / Edge Locations
     - link de alta velocidade
 - Wavelenght : estrutura para 5G
     - latencia extremamente baixa
+
+### Custos
+
+- Month-to-date-cost
+    - O quanto você já gastou
+
+- Total forecasted cost for current month
+    - O quanto estipulam que você vai ter gastado ao final do mês
+
+- Last month's cost for same time period
+    - Custo que você gastou no mês passado no mesmo período
+
+- Last month's total cost
+    - Custo total do mês passado
+
+### Budgets
+
+- Tela de criar um orçamento
+
+- Budget setup
+    - Use a template
+    - Customize
+
+- Templates
+
+    - Zero spend budget
+        - Notifica quando gastar o primeiro centavo
+
+    - Monthly cost budget
+        - Notifica gastos acima de esperado no mês
+
+    - Daily Savings Plans coverage budget
+        
+    - Daily reservation utilizando budget
+
+- Alerta quando chega perto da quantia limite definida e quando chega a 100%
+
+- Os serviços não param, continuam cobrando mesmo ultrapassando limite de gasto definido 
