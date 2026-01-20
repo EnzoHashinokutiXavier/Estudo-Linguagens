@@ -197,3 +197,57 @@ Mover entre classes você paga
     - fala em json oq foi feito e copiado
 
 - arquivo duplicado paga dobrado
+
+### S3 Encryption
+
+- Todos os objetos são encriptados 
+
+- Tipos :
+
+    - Em Repouso : At Rest
+        - Quando o objeto está na bucket
+
+    - Em Trânsito : In Transit
+        - Quando o objeto está em processo de :
+        - Upload
+        - Download
+        - Read
+        - Write
+
+- Repouso
+
+    - SSE-S3 : A chave é gerenciada pela aws
+        - Server-side encryption
+
+    - SSE-KMS : A chave é gerenciada pelo serviço KMS
+        - Server-side encryption with AWS Key Management Service keys
+        - serviço dentro da aws que você administra
+
+    - DSSE-KMS: O cliente é responsável pela chave
+        - Dual-layer server-side encryption with AWS Key Management Service keys
+
+- Transito
+
+    - HTTPS
+
+### Enviar arquivos
+
+- Storage gateway  
+
+    - Dispositivo que fica na sua empresa 
+    - Não mais usado fisicamente, somente aplicação
+    - Armazena tudo localmente e envia uma cópia para bucket
+
+    - File gateway
+
+    - Volume gateway
+
+    - Tape gateway
+
+Como enviar arquivos via internet para uma bucket pode demorar muitos dias para grande quantia de dados, usasse uma aplicação instalada no seu servidor de storage gateway para fazer uma conexão direta com a bucket
+
+- Snow Family
+
+    - Snowball : até 80 TB por dispositivo
+    
+    - Snowmobile : até 100 PB por carreta física
