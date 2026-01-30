@@ -121,4 +121,72 @@ EC2 é muito usado em Machine learning
 
 ### Criar instancias
 
--
+- Launch instances
+
+- Name and tags
+
+- Aplication and OS images (Amazon Machine Image)
+    - Imagem que foi criada e aprovada pela AWS 
+    - Não é instalado o sistema operacional
+    - Quando inicia a instancia fica pronta em segundos
+    - É uma cópia na sua instancia virtual
+
+- Create key pair
+    - chave para conectar com a instancia em segurança
+
+### Maquina virtual
+
+- "Conectada" a um cabo de rede
+
+- Tem endereçamento ip
+    - Por default é bloqueado
+    - Precisa criar um security group
+        - Permit IP enzo
+        - Permit IP ALL
+
+### Conectar na instancia
+
+- EC2 Instance Connect
+    - pagina web aws
+
+- SSH client
+    - apartir da sua máquina
+
+### Discos
+
+- Tambem sao virtuais
+
+- Maioria dos casos o disco nao esta na maquina
+
+- Array de storage que as maquinas acessam por fibra
+
+### Monitoramento
+
+- da maquina, cpu, rede, ...
+
+- varios paineis de monitoramento
+
+### Segurança
+
+- quais portas estao abertas
+
+- quais protocolos estao abertos e apartir de que
+
+### Remover maquina
+
+- da pra parar ela em stop instance
+
+- se clicar em Skip OS shutdown pode corromper dados
+    - como desligar um pc direto da tomada
+
+- quando a maquina estiver parada
+    - nao é mais cobrado por transferencia de dados
+    - ainda cobra por endereçamento ip elastico
+    - e EBS volumes (disco)
+
+- terminate (delete)
+    - ação padrão deleta tudo oq tiver dentro da maquina
+    - não tem como voltar sem snapshot (backup)
+    - Instance state fica como terminated
+    - não cobra mais
+    - some o volume do elastic block store
