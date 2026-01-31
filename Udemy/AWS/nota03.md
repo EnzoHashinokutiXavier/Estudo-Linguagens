@@ -190,3 +190,39 @@ EC2 é muito usado em Machine learning
     - Instance state fica como terminated
     - não cobra mais
     - some o volume do elastic block store
+
+### Security Groups (grupos de segurança)
+
+- Firewall virtual p/ instancia
+
+- Statefull
+    - permite automaticamente as respostas
+    - só precisa de uma regra de entrada
+    - regra de saida gerada automaticamente
+
+- nao usa stateless
+
+- pode permitir trafego
+    - SSH
+    - HTTPS
+    - HTTP
+
+- se uma instancia nao tiver permissão para receber um tipo de protocolo, ela não vai receber e muito menos responder, mesmo que ela tenha permissão para responder o tipo
+
+- se A quer enviar um ping para B, B tem que permitir receber ping
+    - senao B nao recebe e nao vai responder
+
+- Inbound : regras de entrada
+    - Type
+    - Source type
+    - Source : daonde recebe
+
+- Outbound : regras de saida
+
+- Quando salva alterações aplica imediatamente
+
+- Da pra fazer um padrão e usar em outras instancias
+
+- Da para ter mais de um security group em uma instancia
+
+- Statefull, firewall, aplicado a placa de rede
