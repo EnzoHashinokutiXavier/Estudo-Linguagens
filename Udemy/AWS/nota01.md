@@ -2,6 +2,11 @@
 
 - A computação em núvem é o uso de servidores tercerizados 
 
+Antigamente a criação e manutenção de servidores éra tudo responsabilidade da empresa.   
+Cada empresa com seus servidores, tendo que cuidar da instalação, organização, manutenção, refrigeração, reposição de componentes
+
+A aws tem tudo oque a empresa teria em seu server room, só que muito maior, e disponibiliza o uso através dos serviços de nuvem
+
 ```
 Amazon não criou os serviços em núvem, 
 mas foi quem elevou o nível.  
@@ -21,7 +26,7 @@ AWS : Servidores confiáveis, escalabilidade, sem precisar se preocupar com manu
 
 - Pública : provedor cloud
 
-Utilizam um ambiente compartilhado
+Clientes utilizam um ambiente compartilhado
 
 ```
  AWS, Google Cloud, Azure
@@ -40,8 +45,18 @@ Bancos, Instituições financeiras, Governo, Hospitais
 Mistura os dois
 
 ```
-Ex : Dados no privado e outros serviços no cloud
+Ex : Dados no privado e outros serviços na publica
 ```
+
+
+**IAAS** : Infrastructure As A Service  
+Infraestrutura como serviço - Alugar estrutura de TI de um provedor cloud : servidores, maquinas virtuais, storage
+
+**PAAS** : Plataform As A Service
+Plataforma como serviço - Mais ligado ao hardware : Sistema operacional, banco de dados, hospedagem de sites. A aws toma conta do server fisico e do software de gerenciamento para os websites
+
+**SAAS** : Software As A Service
+Software como serviço - Cliente adiquire acesso a uma aplicação : gmail, drop box
 
 ### Vantagens Cloud
 
@@ -51,7 +66,19 @@ Ex : Dados no privado e outros serviços no cloud
 
 - Pay-as-you-go - Paga pelo oque utiliza
 
-- Acesso global - Aplique no mundo inteiro
+- Escala global - Aplique no mundo inteiro, no data center mais próximo do seu cliente
+
+- Custo reduzido - Não precisa mais gastar em servidores com capacidade maior do que preciza 
+
+- Performance - utiliza uma rede mundial de data center
+
+- Velocidade e agilidade - Consegue acessar um serviço em alguns cliques de distancia e iniciar um serviço em alguns minutos
+
+- Produtividade - Devido a velocidade para iniciar serviços sem precisar comprar e configurar um servidor
+
+- Segurança - Segurança de uma empresa trilionaria, criterios de segurança altíssimos
+
+- Flexibilidade - Funcionarios conseguem trabalhar de qualquer lugar do mundo 
 
 ### Divisão
 
@@ -118,3 +145,43 @@ Pops / Edge Locations
 - Alerta quando chega perto da quantia limite definida e quando chega a 100%
 
 - Os serviços não param, continuam cobrando mesmo ultrapassando limite de gasto definido 
+
+### Planos de suporte
+
+- Developer
+    - Recomendado se voce estiver experimentando ou testando a AWS
+    - Acesso aos associados do Cloud Support pela web em horário comercial
+    - Orientações gerais : menos de 24h, Sistema afetado : menosd de 12h
+    - Orientação de arquitetura : geral
+
+- Business
+    - Nivel minimo recomendado para quem tem workloads de produção na aws
+    - Acesso aos engenheiros de suporte de nuvem por telefone, web e conversas 24 horas por dia
+    - Acesso ao App do AWS Support no Slack
+    - Orientações gerais : menos de 24h, Sistema afetado : menosd de 12h
+    - Sistema de produção afetado : menos de 4 horas, Inativo : menos de 1h
+    - Orientação de arquitetura : Contextual em relação ao seus casos de uso
+
+- Enterprise On-Ramp
+    - Recomendado para quem tem workloads essenciais à produção ou aos negócios na AWS
+    - Acesso aos engenheiros de suporte de nuvem por telefone, web e conversas 24 horas por dia
+    - Acesso ao App do AWS Support no Slack
+    - Orientações gerais : menos de 24h, Sistema afetado : menosd de 12h
+    - Sistema de produção afetado : menos de 4 horas, Inativo : menos de 1h
+    - Sistema essencial aos negócios inativo : menos de 30 min
+    - Orientação de arquitetura : analise consultiva e orientações de acordo com as aplicações (uma por ano)
+
+- Enterprise
+    - Recomendado para quem tem negócios e/ou workloads essenciais na AWS
+    - Acesso aos engenheiros de suporte de nuvem por telefone, web e conversas 24 horas por dia
+    - Acesso ao App do AWS Support no Slack
+    - Orientações gerais : menos de 24h, Sistema afetado : menosd de 12h
+    - Sistema de produção afetado : menos de 4 horas, Inativo : menos de 1h
+    - Sistema essencial aos negócios ou à missão inativo : menos de 15 min
+    - Orientação de arquitetura : analise consultiva e orientações de acordo com as aplicações 
+
+### Alerta de custo
+
+- Serviço que gera alerta : Cloud Watch
+
+- Billing -> Alert -> $10
