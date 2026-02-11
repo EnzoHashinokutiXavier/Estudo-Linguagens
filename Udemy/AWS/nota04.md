@@ -49,3 +49,38 @@ Identity and Access Management
 
 - IAM : Acesso a criar usuarios grupos e regras
 - Identity Center : vantagens de se fazer tudo isso e associar a aplicações
+
+# MFA
+Multi Factor Autentication
+
+- autenticação de duas etapas
+
+- 6 digitos que mudam a cada 30 segundos
+
+- acessado no telefone
+
+- google authenticator
+
+# AWS Organizations
+
+- Criar subcontas
+
+- Não precisa de varias contas master
+
+- Integração de subcontas
+
+- Politicas em JSON
+
+- Precisa dele habilitado para trabalhar com o identity center
+
+- AWS Organizations -> Criar uma organização
+
+# Usuários IAM  x  IAM Identity Center
+
+- Identity and Access Management (IAM)
+    - Acesso a serviços e recursos da plataforma da aws
+    - Usuário que configura maquinas virtuais
+
+- IAM Identity Center
+    - Criar usuários e grupos para quem pode usar aplicações da sua empresa
+    - Usuário final
