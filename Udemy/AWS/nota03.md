@@ -5,6 +5,8 @@ Elastic Compute Cloud
 
 - Um dos serviços com maior demanda na AWS
 
+- IAAS : Infraestrutura como serviço da aws para maquinas virtuais
+
 ### Casos de uso comum
 
 - Hospedagem de websites (webserver)
@@ -108,16 +110,36 @@ EC2 é muito usado em Machine learning
     - acesso rápido a disco
     - alta performance, largura de banda alta
 
-- Opções de compra
+### Custo
     
-    - On Demand : paga conforme usa, modelo mais caro
+AWS cobra por segundos com a maquina ligada
 
-    - Savings Plans : reduz custo em troca de compromisso de uso
+- On Demand : paga conforme usa, modelo mais caro
+    - $$$$
 
-    - Instâncias Spots : Aproveita capacidade não utilizada do EC2 na nuvem
-        - Até 90% de desconto em comparação com sob demanda
-        - Para teste, pode ser tirado a qualquer momento
-        - Maior capacidade, menor preço, sem garantia
+- Savings Plans : reduz custo em troca de compromisso de uso
+    - $
+    - 1 a 3 anos
+    - Quanto mais comprometido mais barato voce paga
+
+- Instâncias Spots : Aproveita capacidade não utilizada do EC2 na nuvem
+    - $ 
+    - Até 90% de desconto em comparação com sob demanda
+    - Para teste, pode ser tirado a qualquer momento
+    - Maior capacidade, menor preço, sem garantia
+
+- Hosts Dedicados : paga pelo host em si, mais caro
+    - $$$$$$$
+    - governos, empresas financeiras ou dados que não podem ser compartilhados em rede publica
+
+- Capacidade por Demanda
+    - $$$
+    - define memoria, processamento, cpu, tipo de maquina, por tantas horas a partir de tal dia
+    - aws aloca o serviço para você e ela sabe quando você vai precisar e quando não vai precisar   
+
+Nível gratuito : AWS oferece gratuitamente 750 horas de EC2 t2.micro
+
+Sempre verificque a calculadora da AWS antes de iniciar um projeto
 
 ### Criar instancias
 
