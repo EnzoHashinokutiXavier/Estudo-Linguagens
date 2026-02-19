@@ -1,11 +1,17 @@
 # AWS EC2
 Elastic Compute Cloud
 
-- Serviço de aluguel de servidores virtuais
+O Amazon Elastic Compute Cloud (EC2) é um componente central da plataforma de computação em nuvem da Amazon. O EC2 permite aos usuários alugar máquinas virtuais usando a infraestrutura da Amazon. Ele foi projetado para tornar a computação em escala na web mais acessível para os desenvolvedores.
+
+- Máquinas Virtuais: EC2 fornece instâncias, que são máquinas virtuais executando os sistemas operacionais que você escolher.
+
+- Várias Regiões e Zonas de Disponibilidade: As instâncias do EC2 podem ser implantadas em várias regiões geográficas e zonas de disponibilidade. Isso ajuda a reduzir latência, aumentar a tolerância a falhas e cumprir os requisitos de residência de dados.
 
 - Um dos serviços com maior demanda na AWS
 
 - IAAS : Infraestrutura como serviço da aws para maquinas virtuais
+
+- Em resumo, o Amazon EC2 é um serviço poderoso e flexível que forma a espinha dorsal da computação na plataforma AWS, permitindo que as empresas executem e dimensionem aplicativos na nuvem de forma eficiente e segura.
 
 ### Casos de uso comum
 
@@ -25,7 +31,7 @@ EC2 é muito usado em Machine learning
 
 - Elasticidade : Ajusta recurso conforme demanda 
 
-- Escalabiidade : Capacidade de crescer (vertical/horizontal)
+- Escalabilidade: Você pode dimensionar a capacidade de computação facilmente, criando e lançando novas instâncias conforme necessário, o que é útil para lidar com picos de demanda e escala.
 
 ### EC2 global view
 
@@ -33,14 +39,10 @@ EC2 é muito usado em Machine learning
 
 ### Tipos de instancias
 
-- Existem muitos tipos de instancias no EC2
+- O Amazon EC2 oferece uma variedade de tipos de instâncias otimizados para atender diferentes casos de uso. Os tipos de instâncias compreendem combinações variadas de capacidade de CPU, memória, armazenamento e rede e proporcionam a flexibilidade para escolher a combinação apropriada de recursos para seus aplicativos. 
 
-- Sempre verifique na documentação da AWS
+- Os tipos de instâncias do Amazon EC2 são constantemente atualizados e ampliados para suportar uma gama cada vez maior de casos de uso. É importante verificar a documentação mais recente da AWS para obter as informações mais atualizadas.
     - Amazon EC2 Instance types
-
-- Muda muito rápido / com frequencia
-
-- CPU, memória, armazenamento, capacidade de rede
 
 - Aplicações comuns : 
     - Servidor de internet / website
@@ -54,6 +56,18 @@ EC2 é muito usado em Machine learning
 - Quando sobe uma maquina virtual, sobe em cima de uma pré configuração de hardware
 
 - Graviton : processador criado pela própria amazon
+
+- Instâncias de Uso Geral (A, T, M): Essas instâncias proporcionam um bom equilíbrio de computação, memória e rede e são uma boa escolha para muitas cargas de trabalho que não requerem especificações de hardware específicas.
+
+- Instâncias Otimizadas para Computação (C): Essas instâncias são otimizadas para cargas de trabalho que exigem alta performance de CPU, como computação científica, modelagem e análise financeira, e renderização de mídia.
+
+- Instâncias Otimizadas para Memória (R, X, Z): Essas instâncias são projetadas para cargas de trabalho que processam grandes conjuntos de dados na memória, como bancos de dados em memória, caches distribuídos, análise em memória e aplicações de big data.
+
+- Instâncias Otimizadas para Armazenamento (D, I, H): Essas instâncias são projetadas para cargas de trabalho que requerem alto desempenho de armazenamento local, como bancos de dados escalonáveis, processamento de dados em escala de petabytes e aplicações de data warehousing.
+
+- Instâncias Otimizadas para GPU (P, G, F, Inf): Essas instâncias são projetadas para cargas de trabalho de computação gráfica, como aprendizado de máquina, mineração de criptomoedas, renderização 3D, e aplicações de streaming de jogos.
+
+- Instâncias Arm (A1, M6g, C6g, R6g): Essas instâncias são baseadas na arquitetura Arm e são uma opção de baixo custo para cargas de trabalho que requerem um bom desempenho de CPU e suportam a arquitetura Arm.
 
 - Siglas (não precisa decorar)
     - t = testes 
@@ -112,10 +126,12 @@ EC2 é muito usado em Machine learning
 
 ### Custo
     
+- Preços Flexíveis: O EC2 oferece várias opções de preços, incluindo On-Demand (pague pelo que usar), Reservado (reserve uma instância por um período e obtenha um desconto) e Spot (licitação por capacidade não utilizada a preços mais baixos).
+
 AWS cobra por segundos com a maquina ligada
 
 - On Demand : paga conforme usa, modelo mais caro
-    - $$$$
+    - $ $$ $
 
 - Savings Plans : reduz custo em troca de compromisso de uso
     - $
@@ -133,19 +149,19 @@ AWS cobra por segundos com a maquina ligada
     - governos, empresas financeiras ou dados que não podem ser compartilhados em rede publica
 
 - Capacidade por Demanda
-    - $$$
+    - $ $$
     - define memoria, processamento, cpu, tipo de maquina, por tantas horas a partir de tal dia
     - aws aloca o serviço para você e ela sabe quando você vai precisar e quando não vai precisar   
 
 Nível gratuito : AWS oferece gratuitamente 750 horas de EC2 t2.micro
 
-Sempre verificque a calculadora da AWS antes de iniciar um projeto
+Sempre verifique a calculadora da AWS antes de iniciar um projeto
 
 ### Criar instancias
 
-- Launch instances
+- Launch instances / Executar instâncias
 
-- Name and tags
+- Name and tags / Nome
 
 - Aplication and OS images (Amazon Machine Image)
     - Imagem que foi criada e aprovada pela AWS 
@@ -153,10 +169,37 @@ Sempre verificque a calculadora da AWS antes de iniciar um projeto
     - Quando inicia a instancia fica pronta em segundos
     - É uma cópia na sua instancia virtual
 
-- Create key pair
+- Tipo de instância 
+    - ex : t2.micro
+
+- Create key pair / chave de login
     - chave para conectar com a instancia em segurança
+    - chave de autenticação para ssh
+    - .pem : para uso com OpenSSH
+    - .ppk : para uso com PuTTY
+
+- Firewall
+    - Criar grupo de segurança
+    - Selecionar grupo de segurança existente
+
+- Permitir tráfego SSH de 
+    - ajuda voce a conectar a sua instancia
+
+- Permitir tráfego HTTPS da internet
+    - para configurar um endpoint, por exemplo, ao criar um servidor Web
+
+- Permitir tráfego HTTP da internet
+    - para configurar um endpoint, por exemplo, ao criar um servidor Web
+
+- Configurar armazenamento
+
+- Detalhes avançados
+
+- Executar instancia
 
 ### Maquina virtual
+
+- Controle Completo: Os usuários têm controle total sobre as instâncias do EC2. Eles têm acesso de root, e podem interagir com elas como fariam com qualquer máquina.
 
 - "Conectada" a um cabo de rede
 
@@ -169,9 +212,12 @@ Sempre verificque a calculadora da AWS antes de iniciar um projeto
 ### Conectar na instancia
 
 - EC2 Instance Connect
-    - pagina web aws
+    - pagina web aws, forma recomendada
+    - utiliza uma outra maquina virtual para conectar via terminal
+    - por isso é necessário habilitar conecção SSH
 
 - SSH client
+    - via terminal
     - apartir da sua máquina
 
 ### Discos
@@ -182,17 +228,13 @@ Sempre verificque a calculadora da AWS antes de iniciar um projeto
 
 - Array de storage que as maquinas acessam por fibra
 
+- Armazenamento Integrado: As instâncias do EC2 podem ser integradas com outros serviços da AWS para fornecer armazenamento (por exemplo, Amazon EBS), bancos de dados (por exemplo, Amazon RDS), e redes (por exemplo, Amazon VPC).
+
 ### Monitoramento
 
 - da maquina, cpu, rede, ...
 
 - varios paineis de monitoramento
-
-### Segurança
-
-- quais portas estao abertas
-
-- quais protocolos estao abertos e apartir de que
 
 ### Remover maquina
 
@@ -206,23 +248,39 @@ Sempre verificque a calculadora da AWS antes de iniciar um projeto
     - ainda cobra por endereçamento ip elastico
     - e EBS volumes (disco)
 
-- terminate (delete)
+- terminate (delete) / Encerrar instância
     - ação padrão deleta tudo oq tiver dentro da maquina
     - não tem como voltar sem snapshot (backup)
     - Instance state fica como terminated
     - não cobra mais
     - some o volume do elastic block store
 
+### Segurança
+
+- quais portas estao abertas
+
+- quais protocolos estao abertos e apartir de que
+
+- Segurança: O EC2 trabalha com o Amazon VPC para fornecer segurança e robustez por meio de grupos de segurança e redes isoladas.
+
 ### Security Groups (grupos de segurança)
 
-- Firewall virtual p/ instancia
+Os Security Groups atuam como um firewall virtual para as suas instâncias Amazon EC2 para controlar o tráfego de entrada e saída. Eles operam ao nível da instância, o que significa que você pode associar diferentes security groups a diferentes instâncias, o que é útil para configurar a segurança a um nível granular.
 
-- Statefull
-    - permite automaticamente as respostas
-    - só precisa de uma regra de entrada
-    - regra de saida gerada automaticamente
+- Regras de entrada e saída: Cada security group consiste em um conjunto de regras de entrada e saída. As regras de entrada controlam o tráfego que é permitido chegar à instância associada ao security group, enquanto as regras de saída controlam o tráfego permitido para sair da instância.
 
-- nao usa stateless
+- Estado de conexão: Os security groups são "stateful", o que significa que se você enviar uma solicitação de uma instância, a resposta é permitida automaticamente, independentemente das regras de saída.
+
+    - Statefull
+        - permite automaticamente as respostas
+        - só precisa de uma regra de entrada
+        - regra de saida gerada automaticamente
+
+- Permissões por protocolo: As regras em um security group permitem especificar protocolos permitidos, portas e origem (para tráfego de entrada) ou destino (para tráfego de saída). Isso permite que você restrinja o tráfego para um protocolo ou porta específicos e controle de onde o tráfego é originado ou para onde ele é direcionado.
+
+- Flexibilidade e controle: Você pode associar diferentes security groups a diferentes instâncias e também pode modificar as regras de um security group a qualquer momento. As novas regras são aplicadas automaticamente a todas as instâncias associadas ao security group.
+
+- Isolamento de instâncias: Os security groups ajudam a isolar suas instâncias de outras instâncias na mesma rede, uma vez que as regras são aplicadas por instância e não por sub-rede.
 
 - pode permitir trafego
     - SSH
@@ -248,3 +306,7 @@ Sempre verificque a calculadora da AWS antes de iniciar um projeto
 - Da para ter mais de um security group em uma instancia
 
 - Statefull, firewall, aplicado a placa de rede
+
+- Quando varios servidores utilizam os mesmo security group, ao alterar alguma regra, todos vao ser afetados imediatamente
+
+Em resumo, os Security Groups são uma ferramenta crucial para gerenciar a segurança na AWS, permitindo que você controle e restrinja o tráfego de entrada e saída para suas instâncias do EC2 de uma maneira muito granular e específica.
