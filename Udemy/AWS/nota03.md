@@ -7,6 +7,9 @@ O Amazon Elastic Compute Cloud (EC2) é um componente central da plataforma de c
 
 - Várias Regiões e Zonas de Disponibilidade: As instâncias do EC2 podem ser implantadas em várias regiões geográficas e zonas de disponibilidade. Isso ajuda a reduzir latência, aumentar a tolerância a falhas e cumprir os requisitos de residência de dados.
 
+- Armazenamento Integrado: As instâncias do EC2 podem ser integradas com outros serviços da AWS para fornecer armazenamento (por exemplo, Amazon EBS), bancos de dados (por exemplo, Amazon RDS), e redes (por exemplo, Amazon VPC).
+
+
 - Um dos serviços com maior demanda na AWS
 
 - IAAS : Infraestrutura como serviço da aws para maquinas virtuais
@@ -220,15 +223,39 @@ Sempre verifique a calculadora da AWS antes de iniciar um projeto
     - via terminal
     - apartir da sua máquina
 
-### Discos
+### EBS
+Elastic Block Store
+
+- Disco de HD "nas" maquinas
 
 - Tambem sao virtuais
 
-- Maioria dos casos o disco nao esta na maquina
+- Disco de rede (não é disco físico)
 
-- Array de storage que as maquinas acessam por fibra
+- Maioria dos casos o disco nao esta no servidor
 
-- Armazenamento Integrado: As instâncias do EC2 podem ser integradas com outros serviços da AWS para fornecer armazenamento (por exemplo, Amazon EBS), bancos de dados (por exemplo, Amazon RDS), e redes (por exemplo, Amazon VPC).
+- Cluster de storage que as maquinas acessam por fibra
+
+- 30 gigas de armazenamento gratuito por 12 meses
+
+- O armazenamento só pode ser conectado com servidores da mesma zona de disponibilidade
+
+- Mais de um tipo de disco
+    - ex : um disco para armazenar um banco de dados SQL precisa ser muito mais rápido do que um para backup
+    - cada um possui suas caracteristicas, de uma leitura antes de iniciar um projeto
+
+- HDD : Hard Disk Drive
+    - lento 
+    - maior espaço
+    - barato
+
+- SSD : Solid State Drive
+    - rapido 
+    - menor espaço
+    - muito mais caro
+
+- IOPS : é a quantia de operações feitas por segundo
+    - Input e Output
 
 ### Monitoramento
 
