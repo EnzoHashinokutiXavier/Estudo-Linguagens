@@ -257,6 +257,43 @@ Elastic Block Store
 - IOPS : é a quantia de operações feitas por segundo
     - Input e Output
 
+- **Criar**
+
+    - Iniciar instância EC2
+
+    - Selecionar servidor, armazenamento, EBS  
+    ou  
+    Elastic Block Store, Volumes
+
+    - Selecionando o volume consegue ver informações
+
+    - Para criar um outro novo volume :
+        - Criar volume
+        - Selecionar tipo, tamanho, zona de disponibilidade
+        - A zona deve ser a mesma do servidor
+        - Adicionar tags
+
+    - Inicia como "disponivel", para transformar em "em uso" :
+        - Ações
+        - Associar volume
+        - Instância
+    
+    - Uma vez em uso não se utiliza em outro local
+        - exceçao : tipo de volume io1, io2 block express podem estar conectados em multiplas instancias
+        - Para multiplas instancias existe o serviço EFS
+
+- **Retirar**
+
+    - Selecionar volume
+
+    - Ações
+
+    - Forçar desassociação de volume 
+
+    - Ações
+
+    - Excluir volume
+
 ### Monitoramento
 
 - da maquina, cpu, rede, ...
@@ -337,3 +374,21 @@ Os Security Groups atuam como um firewall virtual para as suas instâncias Amazo
 - Quando varios servidores utilizam os mesmo security group, ao alterar alguma regra, todos vao ser afetados imediatamente
 
 Em resumo, os Security Groups são uma ferramenta crucial para gerenciar a segurança na AWS, permitindo que você controle e restrinja o tráfego de entrada e saída para suas instâncias do EC2 de uma maneira muito granular e específica.
+
+### Snapshots
+
+- "Pontos no tempo", como o versionamento do github
+
+- Você define quando fazer os snapshots
+
+- Você nao paga por ele, paga pelo oq armazena
+
+- Um snapshot é uma cópia de um disco então ocupa espaço na aws, logo é cobrado
+
+- Adiciona nome e tags aos snapshots
+
+- Não interfere a utilização atual do servidor
+
+- Pode compartilhar com outras contas 
+
+- Pode transformar o snapshot em disco denovo "criar volume com snapshot"
