@@ -392,3 +392,53 @@ Em resumo, os Security Groups são uma ferramenta crucial para gerenciar a segur
 - Pode compartilhar com outras contas 
 
 - Pode transformar o snapshot em disco denovo "criar volume com snapshot"
+
+
+### AMI 
+Amazon Machine Image
+
+- Da para criar uma imagem de um servidor completo (não só o disco)
+
+- Da para criar outro servidor sem precisar instalar nada utilizando uma image
+
+**Como fazer um servidor :**
+
+- Adicione acesso HTTP e HTTPS no grupo de segurança para transformar um servidor em um webserver
+
+- Instala e inicia o HTTP
+
+- Copia o ip
+
+- lembre de colocar http antes do ip para entrar no site
+
+**Criar uma imagem a partir do servidor :**
+
+- seleciona o servidor
+
+- Ações
+
+- Imagem e modelos
+
+- Criar imagem
+
+**Ver imagem :**
+
+- menu esquerdo
+
+- Imagens
+
+- AMIs
+
+**Gerar outro servidor a partir do AMI :**
+
+- Criar nova instância
+
+- Minhas AMIs
+
+- De minha propriedade   
+ou   
+Compartilhado comigo
+
+- selecionar grupo de segurança
+
+- no script não precisa escrever nada porque a AMI ja vem com tudo instalado
