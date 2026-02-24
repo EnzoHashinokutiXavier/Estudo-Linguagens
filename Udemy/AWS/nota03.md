@@ -442,3 +442,27 @@ Compartilhado comigo
 - selecionar grupo de segurança
 
 - no script não precisa escrever nada porque a AMI ja vem com tudo instalado
+
+### EFS
+Elastic File System
+
+- Arquivos que podem ser compartilhados com outros servidores, multiplas instancias e zonas
+
+- Parecido com o EBS
+
+- atenção nos preços
+
+- feito e criado para linux
+
+### FSX 
+File System x
+
+- EBS : para uma maquina
+
+- EFS : compartilhamento de arquivos para varias maquinas linux
+
+- FSx : sistema gerenciador de arquivos para windows e outras aplicações
+    - ONTAP
+    - OpenZFS
+    - Windows File Server
+    - Lustre
