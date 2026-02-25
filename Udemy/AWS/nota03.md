@@ -223,77 +223,6 @@ Sempre verifique a calculadora da AWS antes de iniciar um projeto
     - via terminal
     - apartir da sua máquina
 
-### EBS
-Elastic Block Store
-
-- Disco de HD "nas" maquinas
-
-- Tambem sao virtuais
-
-- Disco de rede (não é disco físico)
-
-- Maioria dos casos o disco nao esta no servidor
-
-- Cluster de storage que as maquinas acessam por fibra
-
-- 30 gigas de armazenamento gratuito por 12 meses
-
-- O armazenamento só pode ser conectado com servidores da mesma zona de disponibilidade
-
-- Mais de um tipo de disco
-    - ex : um disco para armazenar um banco de dados SQL precisa ser muito mais rápido do que um para backup
-    - cada um possui suas caracteristicas, de uma leitura antes de iniciar um projeto
-
-- HDD : Hard Disk Drive
-    - lento 
-    - maior espaço
-    - barato
-
-- SSD : Solid State Drive
-    - rapido 
-    - menor espaço
-    - muito mais caro
-
-- IOPS : é a quantia de operações feitas por segundo
-    - Input e Output
-
-- **Criar**
-
-    - Iniciar instância EC2
-
-    - Selecionar servidor, armazenamento, EBS  
-    ou  
-    Elastic Block Store, Volumes
-
-    - Selecionando o volume consegue ver informações
-
-    - Para criar um outro novo volume :
-        - Criar volume
-        - Selecionar tipo, tamanho, zona de disponibilidade
-        - A zona deve ser a mesma do servidor
-        - Adicionar tags
-
-    - Inicia como "disponivel", para transformar em "em uso" :
-        - Ações
-        - Associar volume
-        - Instância
-    
-    - Uma vez em uso não se utiliza em outro local
-        - exceçao : tipo de volume io1, io2 block express podem estar conectados em multiplas instancias
-        - Para multiplas instancias existe o serviço EFS
-
-- **Retirar**
-
-    - Selecionar volume
-
-    - Ações
-
-    - Forçar desassociação de volume 
-
-    - Ações
-
-    - Excluir volume
-
 ### Monitoramento
 
 - da maquina, cpu, rede, ...
@@ -443,8 +372,97 @@ Compartilhado comigo
 
 - no script não precisa escrever nada porque a AMI ja vem com tudo instalado
 
+### EBS
+Elastic Block Store
+
+O Amazon Elastic Block Store (EBS) é um serviço de armazenamento de alto desempenho oferecido pela AWS para uso com Amazon Elastic Compute Cloud (EC2). Ele foi projetado para aplicativos que exigem armazenamento de baixa latência para ler e escrever dados em blocos.
+
+- Disco de HD "nas" maquinas
+
+- Tambem sao virtuais
+
+- Disco de rede (não é disco físico)
+
+- Maioria dos casos o disco nao esta no servidor
+
+- Cluster de storage que as maquinas acessam por fibra
+
+- 30 gigas de armazenamento gratuito por 12 meses
+
+- O armazenamento só pode ser conectado com servidores da mesma zona de disponibilidade
+
+- Desempenho de Armazenamento: EBS fornece armazenamento em bloco de alto desempenho que pode ser anexado a uma instância EC2. Os volumes EBS são otimizados para cargas de trabalho que exigem operações de E/S de baixa latência, como bancos de dados e aplicativos que exigem muita E/S.
+
+- Durabilidade: O EBS é projetado para durabilidade. Os volumes EBS são automaticamente replicados em sua zona de disponibilidade para proteger contra falhas de componentes, proporcionando alta disponibilidade e durabilidade.
+
+- Tipos de Volume: EBS oferece vários tipos de volume para atender às necessidades de armazenamento e desempenho. Isso inclui os volumes SSD-backed para cargas de trabalho transacionais de uso geral (gp2 e gp3) e de alto desempenho (io1 e io2), e os volumes HDD-backed para cargas de trabalho throughput intensivas (st1 e sc1).
+
+- Backup com Snapshots: O EBS oferece a capacidade de criar snapshots (cópias) dos seus volumes, que são armazenados no Amazon S3 para durabilidade. Esses snapshots podem ser usados para criar novos volumes EBS ou para aumentar o tamanho do volume.
+
+- Criptografia: O EBS oferece a opção de criar volumes criptografados e controlar as chaves de criptografia usando o AWS Key Management Service (KMS). Isso ajuda a atender aos requisitos de conformidade e segurança.
+
+- Integração com a AWS: EBS é profundamente integrado com outros serviços da AWS, como Amazon CloudWatch para monitoramento, AWS Identity and Access Management (IAM) para controle de acesso, e AWS Snapshot Scheduler para automação de backup.
+
+- Mais de um tipo de disco
+    - ex : um disco para armazenar um banco de dados SQL precisa ser muito mais rápido do que um para backup
+    - cada um possui suas caracteristicas, de uma leitura antes de iniciar um projeto
+
+- HDD : Hard Disk Drive
+    - lento 
+    - maior espaço
+    - barato
+
+- SSD : Solid State Drive
+    - rapido 
+    - menor espaço
+    - muito mais caro
+
+- IOPS : é a quantia de operações feitas por segundo
+    - Input e Output
+
+- Em resumo, o Amazon EBS é uma solução de armazenamento em bloco de alto desempenho que é fundamental para muitas aplicações em execução na AWS devido à sua durabilidade, flexibilidade e integração com a AWS.
+
+- **Criar**
+
+    - Iniciar instância EC2
+
+    - Selecionar servidor, armazenamento, EBS  
+    ou  
+    Elastic Block Store, Volumes
+
+    - Selecionando o volume consegue ver informações
+
+    - Para criar um outro novo volume :
+        - Criar volume
+        - Selecionar tipo, tamanho, zona de disponibilidade
+        - A zona deve ser a mesma do servidor
+        - Adicionar tags
+
+    - Inicia como "disponivel", para transformar em "em uso" :
+        - Ações
+        - Associar volume
+        - Instância
+    
+    - Uma vez em uso não se utiliza em outro local
+        - exceçao : tipo de volume io1, io2 block express podem estar conectados em multiplas instancias
+        - Para multiplas instancias existe o serviço EFS
+
+- **Retirar**
+
+    - Selecionar volume
+
+    - Ações
+
+    - Forçar desassociação de volume 
+
+    - Ações
+
+    - Excluir volume
+
 ### EFS
 Elastic File System
+
+O Amazon Elastic File System (EFS) é um serviço de armazenamento de arquivos totalmente gerenciado que facilita a configuração e o dimensionamento de sistemas de arquivos em nuvem na AWS. O EFS foi projetado para ser altamente disponível, durável e seguro, e pode ser usado com uma ampla gama de serviços da AWS e aplicações on-premise.
 
 - Arquivos que podem ser compartilhados com outros servidores, multiplas instancias e zonas
 
@@ -454,8 +472,30 @@ Elastic File System
 
 - feito e criado para linux
 
-### FSX 
+- Escalabilidade: O EFS é projetado para escalar automaticamente para acomodar o crescimento dos dados, de alguns gigabytes a petabytes, sem a necessidade de provisionar o armazenamento.
+
+- Alta Disponibilidade e Durabilidade: O EFS armazena automaticamente os arquivos em vários dispositivos dentro e entre várias zonas de disponibilidade para garantir a disponibilidade e durabilidade dos dados.
+
+- Compartilhamento de Arquivos: O EFS suporta o compartilhamento de arquivos entre várias instâncias do Amazon EC2, permitindo que múltiplos servidores acessem um sistema de arquivos simultaneamente.
+
+- Integração com AWS: O EFS pode ser integrado a outros serviços da AWS, como o AWS Backup para backups automatizados e o AWS IAM para controle de acesso.
+
+- Tipos de armazenamento: O EFS oferece várias classes de armazenamento, incluindo Standard e Infrequent Access (IA), permitindo que você otimize os custos com base em seus padrões de acesso aos arquivos.
+
+- Segurança: O EFS inclui suporte para criptografia de dados em repouso e em trânsito, bem como integração com o AWS Key Management Service (KMS) para gerenciamento de chaves de criptografia.
+
+Resumindo, o Amazon EFS é uma solução de armazenamento de arquivos escalável, de alta disponibilidade e segura, que facilita o compartilhamento de arquivos entre instâncias EC2 e outros serviços AWS.
+
+### FSx 
 File System x
+
+O Amazon FSx é um serviço de armazenamento de arquivos totalmente gerenciado da AWS que facilita o lançamento e a execução de sistemas de arquivos de terceiros. O FSx fornece o rico conjunto de recursos e a rápida performance que esses tipos de aplicativos precisam, e atualmente suporta dois sistemas de arquivos: Windows File Server para aplicações baseadas em Windows, e Lustre para cargas de trabalho de computação intensiva.
+
+- Desempenho: O Amazon FSx foi projetado para oferecer o desempenho rápido necessário para suportar aplicações exigentes. Ele fornece baixa latência e altas taxas de transferência de dados.
+
+- Compatibilidade e Integração: O Amazon FSx é totalmente compatível com os sistemas de arquivos que suporta, o que significa que você pode usar suas ferramentas e aplicações existentes sem modificação. Além disso, o FSx se integra com uma série de outros serviços AWS para coisas como backup, monitoramento e acesso seguro a arquivos.
+
+- Segurança: O Amazon FSx oferece várias funcionalidades de segurança, como a capacidade de armazenar dados em redes virtuais privadas da Amazon (VPCs), suporte a redes de acesso (ACLs) para o Windows File Server, criptografia de dados em repouso e em trânsito, e integração com AWS Key Management Service (KMS) para gerenciamento de chaves de criptografia.
 
 - EBS : para uma maquina
 
@@ -466,3 +506,9 @@ File System x
     - OpenZFS
     - Windows File Server
     - Lustre
+
+- FSx para Windows File Server: Ele fornece um sistema de arquivos nativamente compatível com o Windows, permitindo que você mova com facilidade as aplicações baseadas em Windows que exigem o sistema de arquivos do Windows para a AWS. É construído sobre o Windows Server e oferece suporte a recursos como deduplicação de dados, criptografia de dados em repouso, e acesso via SMB (Server Message Block) e NFS (Network File System).
+
+- FSx para Lustre: O Lustre é um sistema de arquivos popular para cargas de trabalho de computação intensiva, como análise de big data, modelagem de machine learning e processamento de mídia. O FSx para Lustre é totalmente gerenciado pela AWS, simplificando o processo de criação e execução de um sistema de arquivos Lustre.
+
+Em resumo, o Amazon FSx é um serviço poderoso e flexível que torna mais fácil do que nunca para você executar sistemas de arquivos totalmente gerenciados na AWS. Ele suporta sistemas de arquivos Windows e Lustre, oferecendo um alto nível de desempenho, segurança e integração com outros serviços AWS.
