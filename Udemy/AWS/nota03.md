@@ -30,11 +30,32 @@ EC2 é muito usado em Machine learning
 
 - Jogos online
 
-### Conceitos
-
-- Elasticidade : Ajusta recurso conforme demanda 
+### Conceitos dos serviços AWS
 
 - Escalabilidade: Você pode dimensionar a capacidade de computação facilmente, criando e lançando novas instâncias conforme necessário, o que é útil para lidar com picos de demanda e escala.
+
+    - Escalabilidade Vertical : Pegar o tipo da sua instancia e aumentar, ex - T2.micro -> T2.2xLarge
+
+    - Escalabilidade Horizontal : Aumentar o numero de instancias (autoscaling + ELB)
+
+- Elasticidade : Capacidade de se adaptar automaticamente a mudanças (load/carga)
+
+    - ex : um servidor para de funcionar e redireciona o usuario a outro servidor
+
+    - ex : dois servidores em 90% de uso, adiciona um terceiro automaricamente, ou reduz quando menor uso (autoscaling)
+
+- Disponibilidade : Estar disponivel em varias zonas de disponibilidades para caso alguma fique indisponivel (autoscaling)
+
+### Autoscaling
+
+- Criar um modelo de instancia + script de inicialização
+
+- Scaling OUT : adicionando instancias
+
+- Scaling IN : removendo instancias
+
+- Configura quantia minima e maxima de servidores, porcentagem de trafico que vai para cada servidor, quantos porcento de uso por servidor inicia um novo automaticamente
+
 
 ### EC2 global view
 
