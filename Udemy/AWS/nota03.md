@@ -40,6 +40,8 @@ EC2 é muito usado em Machine learning
 
 - Elasticidade : Capacidade de se adaptar automaticamente a mudanças (load/carga)
 
+    - autoscaling + ELB
+
     - ex : um servidor para de funcionar e redireciona o usuario a outro servidor
 
     - ex : dois servidores em 90% de uso, adiciona um terceiro automaricamente, ou reduz quando menor uso (autoscaling)
@@ -56,6 +58,21 @@ EC2 é muito usado em Machine learning
 
 - Configura quantia minima e maxima de servidores, porcentagem de trafico que vai para cada servidor, quantos porcento de uso por servidor inicia um novo automaticamente
 
+- O AutoScaling e o Load Balancer podem ser customizados dentro do serviço de EC2
+
+### ELB
+Elastic Load Balancer
+
+Funciona com o AutoScaling como arroz e feijao, se cria um precisa do outro
+
+- Load Balancer (LB) : 
+    - Encherga webservers dentro de um Auto Scaling Group (ASG)
+    - Se ASG criar um novo webserver ele notifica o LB
+    - LB começa a enviar trafeco para o novo servidor
+
+- O site que o usuário acessa como www.exemplo.com normalmente direciona para um serviço DNS que aponta para a URL do LB.
+
+- O LB redireciona com base na sua regra de balanceamento
 
 ### EC2 global view
 
