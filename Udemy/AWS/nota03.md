@@ -50,6 +50,20 @@ EC2 é muito usado em Machine learning
 
 ### Autoscaling
 
+O Amazon Auto Scaling é um serviço da AWS que permite o dimensionamento automático de recursos para manter a performance e a disponibilidade de suas aplicações. Ele funciona monitorando continuamente suas aplicações e ajustando a capacidade para manter a performance estável e previsível ao menor custo possível.
+
+- Dimensionamento Automático: O Auto Scaling permite que você defina políticas de dimensionamento que ajustam automaticamente a capacidade de recursos com base nas condições definidas. Por exemplo, você pode dimensionar automaticamente o número de instâncias do Amazon EC2 para atender à demanda de tráfego.
+
+- Otimização de Custo e Performance: Ao ajustar continuamente a capacidade, o Auto Scaling ajuda a melhorar a disponibilidade e minimizar os custos. Quando a demanda aumenta, o Auto Scaling adiciona automaticamente mais recursos. Quando a demanda diminui, ele remove os recursos desnecessários para economizar dinheiro.
+
+- Balanceamento de Carga: O Auto Scaling pode ser usado junto com o Elastic Load Balancing (ELB) para distribuir o tráfego de aplicações entre várias instâncias EC2 para melhorar a disponibilidade e a tolerância a falhas.
+
+- Saúde da Aplicação: O Auto Scaling realiza verificações de saúde em suas instâncias EC2 e substitui automaticamente as instâncias que não estão saudáveis.
+
+- Integração AWS: O Auto Scaling está integrado com uma série de serviços da AWS, incluindo Amazon CloudWatch, Amazon SNS, AWS CloudFormation, entre outros.
+
+- Flexibilidade: O Auto Scaling permite dimensionar vários recursos, não se limitando apenas às instâncias EC2. Você também pode dimensionar serviços como Amazon DynamoDB, Amazon Aurora, Amazon ECS, e Amazon RDS.
+
 - Criar um modelo de instancia + script de inicialização
 
 - Scaling OUT : adicionando instancias
@@ -60,8 +74,12 @@ EC2 é muito usado em Machine learning
 
 - O AutoScaling e o Load Balancer podem ser customizados dentro do serviço de EC2
 
+Em resumo, o Amazon Auto Scaling é um serviço eficaz e essencial para otimizar a performance e a disponibilidade de suas aplicações na AWS, garantindo que você tenha o número certo de recursos da AWS quando precisar.
+
 ### ELB
 Elastic Load Balancer
+
+O Elastic Load Balancing (ELB) é um serviço da Amazon Web Services (AWS) que distribui automaticamente o tráfego de entrada de aplicações em várias instâncias EC2, contêineres, endereços IP e funções Lambda para garantir que as aplicações tenham alta disponibilidade e desempenho.
 
 Funciona com o AutoScaling como arroz e feijao, se cria um precisa do outro
 
@@ -73,6 +91,33 @@ Funciona com o AutoScaling como arroz e feijao, se cria um precisa do outro
 - O site que o usuário acessa como www.exemplo.com normalmente direciona para um serviço DNS que aponta para a URL do LB.
 
 - O LB redireciona com base na sua regra de balanceamento
+
+- Tipos de Balanceador de Carga: O ELB oferece três tipos de balanceadores de carga que se adequam a diferentes necessidades de aplicação - o Balanceador de Carga de Aplicação (ALB) para tráfego HTTP e HTTPS, o Balanceador de Carga de Rede (NLB) para tráfego TCP, UDP e TLS, e o Classic Load Balancer para tráfego HTTP, HTTPS, TCP e SSL.
+
+- Alta disponibilidade: O ELB distribui automaticamente o tráfego em várias instâncias em várias zonas de disponibilidade para garantir a continuidade do serviço, mesmo se uma ou mais instâncias falharem.
+
+- Escalabilidade: O ELB escala automaticamente a sua capacidade de balanceamento de carga em resposta ao tráfego de entrada.
+
+- Integração com o Auto Scaling: O ELB trabalha em conjunto com o Auto Scaling da AWS para garantir que há capacidade suficiente para atender ao tráfego de entrada e para substituir as instâncias que falham.
+
+- Segurança: O ELB oferece recursos de segurança como a integração com o AWS Certificate Manager para SSL/TLS, e a integração com o AWS Identity Access Management (IAM) para controle de acesso.
+
+- Monitoramento e Auditoria: O ELB integra-se com o Amazon CloudWatch e o AWS CloudTrail para monitorar o desempenho de suas aplicações e registrar as ações realizadas no seu balanceador de carga.
+
+Resumindo, o Elastic Load Balancing é uma ferramenta essencial para a distribuição eficiente de tráfego, melhorando a disponibilidade e a tolerância a falhas das suas aplicações na AWS.
+
+### EC2 + Autoscaling + ELB (ALB - aplication load balancer)
+
+- Criar um modelo de instancia
+    - Criar instancias a partir de um modelo   
+
+- Criar grupo de autoscaling
+
+
+- Criar load balancer
+
+- Para derrubar :
+    - 1 autoscaling 2 load balncer 3 grupos de destino 4 modelos de execução
 
 ### EC2 global view
 
