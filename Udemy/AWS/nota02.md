@@ -14,6 +14,15 @@
 - S3 é como um armário, que pode criar várias gavetas
 - As gavetas seriam as Buckets, como pasta no windows
 
+- Netflix pagava 19 milhoes por mes para usar os serviços do S3
+
+- O S3 pode ser barato como pode ser muito caro também
+    - Depende do quao rapido voce quer acessar seus objetos
+
+- O S3 nao depende de região, ele é global
+
+- Da para hospedar um website estático no S3
+
 ### Estrutura do S3
 
 - Bucket : pasta raiz onde ficam os arquivos
@@ -27,7 +36,7 @@
 
 - pode criar quantas buckets quiser, aonde quiser
 
-- cada bucket tem nome único
+- cada bucket tem nome único mundialmente
 
 - 3 a 63 caracteres, pode ter ponto e hifem
 
@@ -54,11 +63,20 @@ ex : servidor envia via api backup do banco de dados
 
 só dá para deletar uma bucket se ela estiver vazia
 
+### Objeto
+
+- Os objetos são os arquivos
+
+- O tamanho máximo por aobjeto/arquivo é 5TB
+
+- Se o arquivo for maior que 5 gigas, deve ser enviado por multi-part upload
+
+- Cada objeto da bucket pertence a uma classe
 
 ### Classes de armazenamento
 (storage class)
 
-- S3 Standard
+- S3 Standard (padrao)
     - Alta durabilidade, disponibilidade e baixa latencia
     - acesso frequente
     - sites, arquivos usados diariamente
@@ -152,6 +170,24 @@ Mover entre classes você paga
     - upload arquivo html
     - acesso tem que ser público
     - aplicar bucket policy
+```
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::Bucket-Name/*"
+            ]
+        }
+    ]
+}
+```
     - habilitar Static website hosting
     - digitar o nome do arquivo index
     - acessar no Bucket Website Endpoint
