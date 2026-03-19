@@ -218,14 +218,17 @@ Mover entre classes você paga
 
 - replicar arquivos de uma bucket em outra
 
+- Asynchronous - é uma cópia assincrona automatica
+
+- Same Region Replication (SRR)
+    - Dentro da mesma região
+
 - Cross Region Replication (CRR)
     - exemplo : objeto no US copiado numa bucket de UK
 
-- Same Region Replication (SRR)
-
 - versionamento deve estar ativado nas duas buckets
 
-- filtro do que é replicado
+- filtro do que é replicado (que tipo de arquivo)
 
 - Job
     - acontece em cross region
@@ -233,6 +236,10 @@ Mover entre classes você paga
     - fala em json oq foi feito e copiado
 
 - arquivo duplicado paga dobrado
+
+- Bom para backup para caso perde arquivos de uma bucket 
+
+- Util para servidores de diferentes regioes terem acessoas a mesmo arquivos (cada um em uma bucket ligada a outra)
 
 ### S3 Encryption
 
@@ -250,7 +257,7 @@ Mover entre classes você paga
         - Read
         - Write
 
-- Repouso
+- Repouso 
 
     - SSE-S3 : A chave é gerenciada pela aws
         - Server-side encryption
@@ -284,6 +291,10 @@ Como enviar arquivos via internet para uma bucket pode demorar muitos dias para 
 
 - Snow Family
 
-    - Snowball : até 80 TB por dispositivo
+    - snowcone - 8 TB em HDD ou 14 TB em SSD
+
+    - Snowball EDGE: 
+        - Otimizado para armazenamento : 210 TB em SSD
+        - Otimizado para computação : 28 TB
     
     - Snowmobile : até 100 PB por carreta física
