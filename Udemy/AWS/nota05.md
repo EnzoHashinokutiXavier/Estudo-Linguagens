@@ -1,39 +1,126 @@
-# Infraestrutura da AWS
+# Banco de Dados
 
-A infraestrutura global da AWS é a base sobre a qual os serviços da AWS são construídos. Ela consiste em uma série de Regiões e Zonas de Disponibilidade espalhadas pelo mundo, projetadas para fornecer um serviço seguro, confiável e escalável.
+- Banco de dados relacionais :
+    - Tabelas relacionadas 
+    - Dados estruturados / complexos 
+        - Posso usar o id do cliente para criar novas tabelas com novas informações ligadas ao usuario pelo id
+    - SQL
+    - Ex : registro de transações
 
-- 39 regiões lançadas, cada uma com várias zonas de disponibilidade
+- Banco de dados não relacionais :
+    - entradas em diferentes colunas
+    - Big Data - grande quantidade de dados
+        - Mais rapida, com menor estrutura
+    - NON SQL
+    - Ex : redes sociais
 
-- 123 zonas de disponibilidade
+# AWS RDS - Relational Data Base (SQL)
 
-- mais de 750 POPs do CloudFront
+- Se voce cria o data base junto com o servidor nainstancia EC2, se a instancia cai, voce perde seus dados
 
-- 33 zonas locais e zonas do Wavelength para aplicações de baixa latência
+- Para maior segurança, ligue os servidores a um banco de dados fora da instancia EC2
 
-Uma **Region** tem alguns data centers interconectados que formam as **Availability Zones**. Um data center menor conectado a um maior é chamado de **Local Zone** 
+- AWS toma conta de tudo oq é necessário para o banco de dados funcionar
 
-- Regiões: Uma região da AWS é uma área geográfica que contém pelo menos duas Zonas de Disponibilidade. Cada região é completamente independente das outras regiões, o que ajuda a isolar falhas e evitar a propagação de problemas de uma região para outra.
+- PostgresSQL
+- MySQL
+- MariaDB
+- Oracle
+- Microsoft SQL Server
+- Aurora
 
-- Zonas de Disponibilidade (AZs): Cada região da AWS é dividida em Zonas de Disponibilidade. Cada AZ é um centro de dados separado dentro de uma região, mas todas as AZs dentro de uma região estão conectadas através de redes de alta velocidade, de baixa latência e totalmente redundantes. As AZs fornecem uma maneira de construir aplicativos altamente disponíveis e tolerantes a falhas.
+### Aurora - recomendado para começar
 
-- Zonas Locais: As zonas locais da AWS aproximam a computação, o armazenamento, o banco de dados e outros produtos da AWS selecionados dos usuários finais. Com as zonas locais da AWS, você pode executar facilmente aplicativos altamente exigentes que exigem latências em milissegundos de um dígito para seus usuários finais, como criação de conteúdo de mídia e entretenimento, jogos em tempo real, simulações de reservatórios, automação de projetos eletrônicos e machine learning.
+- Banco de dados da aws
 
-- Wavelenght: O AWS Wavelength permite que os desenvolvedores criem aplicações com latências de um dígito para dispositivos móveis e usuários finais. Os desenvolvedores da AWS podem implantar seus aplicativos nas Zonas do Wavelength, implantações de infraestrutura da AWS que incorporam serviços de computação e armazenamento da AWS aos datacenters dos provedores de telecomunicações na borda das redes 5G e acessam facilmente a variedade de serviços da AWS na região. Isso permite que os desenvolvedores forneçam aplicativos que exigem latências inferiores a 10 milissegundos, como streaming de jogos e vídeos ao vivo, inferência de machine learning na borda e realidade aumentada e virtual (AR/VR).
+- Aumenta ou diminui o espaço de acordo com sua necessidade
 
-- OutPosts: O AWS Outposts leva produtos, infraestrutura e modelos operacionais nativos da AWS a praticamente qualquer datacenter, espaço de colocalização ou instalações on-premises. Você pode usar as mesmas APIs, ferramentas e infraestrutura da AWS no local e na Nuvem AWS para oferecer uma experiência híbrida verdadeiramente consistente. O AWS Outposts foi projetado para ambientes conectados e pode ser usado para oferecer suporte a workloads que precisam permanecer on-premises devido à baixa latência ou às necessidades de processamento de dados locais.
+- Não tem free tier
 
-A infraestrutura global da AWS permite que os usuários implantem seus aplicativos e serviços de maneira flexível, resiliente e eficiente em termos de latência, onde quer que seus clientes estejam localizados no mundo. Isso significa que, como usuário da AWS, você pode oferecer uma experiência de usuário mais rápida e melhor para seus clientes, independentemente de sua localização geográfica.
+- Compatibilidade com MySQL e Postgres
 
-# AWS Share Responsibility Model
+- No mínimo 5x mais performance que o MySQL
 
-O Modelo de Responsabilidade Compartilhada da AWS é uma estrutura de governança que delineia a divisão de responsabilidades de segurança entre a Amazon Web Services (AWS) e o usuário (cliente). Essa divisão de responsabilidades permite que a AWS se concentre na segurança da infraestrutura de computação em nuvem, enquanto o usuário se concentra na segurança dos dados e recursos que colocam na nuvem.
+- 3x mais performance que o Postgres
 
-![alt text](image.png)
+![alt text](image-1.png)
 
-- Segurança "da" nuvem: A AWS é responsável pela proteção da infraestrutura que executa todos os serviços oferecidos na AWS Cloud. Isso inclui hardware, software, redes e instalações que sustentam os serviços AWS Cloud.
+![alt text](image-2.png)
 
-- Segurança "na" nuvem: O cliente é responsável pela segurança de qualquer coisa que coloque "na" nuvem ou conecte "à" nuvem. Isso pode incluir a configuração correta de controles de segurança e conformidade em serviços da AWS, gerenciamento de dados (incluindo criptografia e backups), classificação de ativos e outras várias tarefas de segurança de TI.
+- Está em cima de uma instancia ec2
+    - Utiliza volume EBS
+        - SSD ou HDD
+            - Acessa um disco = é lento
 
-- Serviços de Infraestrutura, Contêiner e Abstração: Dependendo do tipo de serviço da AWS que está sendo usado (por exemplo, uma instância EC2 versus um banco de dados RDS), a AWS e o cliente compartilharão diferentes partes da responsabilidade de segurança. Por exemplo, para um serviço de infraestrutura como o EC2, a AWS fornece a segurança física, a do hypervisor e a da rede, enquanto o cliente é responsável pelo sistema operacional e pelas aplicações. Para um serviço de contêiner como o RDS, a AWS também é responsável pela segurança do sistema operacional e do serviço de banco de dados, enquanto o cliente ainda é responsável pelas aplicações e dados.
+### Elasticache
 
-A compreensão e a aplicação adequada do Modelo de Responsabilidade Compartilhada da AWS são fundamentais para garantir a segurança e a conformidade ao usar a AWS. Isso requer que os clientes estejam cientes de suas responsabilidades de segurança e implementem práticas de segurança robustas ao usar serviços da AWS.
+Acessar um disco é lento, é muito mais rápido acessar memória.    
+Para isso a AWS criou o Elasticache
+
+- Cache : armazenar algo por um curto espaço de tempo
+
+- Maior velocidade, mais caro
+
+- Redis (+features) ou Memcache (+simples)
+    - Tipos open source de in memory data store
+
+### Elasticache + Aurora
+
+- Servdores apontando para Aurora e Elasticache
+
+- Servidores perguntam primeiro para Elasticache por responder mais rapido
+
+- Se não tiver informação armazenada no elasticache :
+    - elasticache responde com cache miss (nao tem)
+    - servidores pegam informação no aurora
+    - servidores enviam informação ao usuário e registram no elasticache
+
+- Maior performance, load do banco de dados reduzido
+
+- Util para aplicações de grande porte
+
+# DynamoDB (NOSQL)
+
+- armazenar no minimo em 3 AZ
+
+- serverless : nao utiliza servidores
+    - nao precisa de EC2
+    - aws gerencia tudo pra voce
+
+- muito rapido
+
+- autoscaling
+
+- chave de partição : faz parte da chave primaria da tabela, usado para recuperar itens de sua tabela e alocar dados entre hosts para escalabilidade e disponibilidade
+
+- pode exportar itens para o S3
+
+# Amazon Neptune (DB)
+
+- Banco de dados ideal para Social Networks ou muitos links entre artigos 
+
+- Ex : wikipedia - varias conexões entre artigos
+
+- 3 AZ, 15 read reblicas
+
+- Latencia muito baixa (milisegundos)
+
+- Otimizada para Dificult Queries (pesquisas complexas na base de dados)
+
+- Graph Dataset - visualizar dados
+
+![alt text](image-3.png)
+
+# AWS Glue (ETL - Extract Transform Load)
+
+- Extract : Extrair informação
+    - S3, RDS
+
+- Transform : Organizar informação
+    - Transforma informação
+    - Organiza e limpa os dados
+
+- Load : Visualizar informação
+    - Redshift
+
+Ex : planilha de compra e venda de produtos que deseja analizar algum dado
