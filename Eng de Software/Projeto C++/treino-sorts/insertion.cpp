@@ -24,6 +24,7 @@ int main()
     }
 
     exibir();
+    return 0;
 }
 
 // Pede ao usuario informar numeros para preencher a lista

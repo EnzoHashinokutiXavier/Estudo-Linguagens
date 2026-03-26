@@ -25,6 +25,7 @@ int main()
     }
 
     exibir();
+    return 0;
 }
 
 void preencher()
