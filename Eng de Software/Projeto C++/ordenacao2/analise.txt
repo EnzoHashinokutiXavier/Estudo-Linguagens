@@ -1,0 +1,23 @@
+1. Qual algoritmo apresentou melhor desempenho para:
+o vetor já ordenado?
+- Merge Sort teve 19 comparações enquanto Quick Sort teve 45 comparações
+
+o vetor aleatório?
+- Ambos tiveram 23 comparações 
+
+o vetor inversamente ordenado?
+- Merge Sort teve 15 comparações enquanto Quick Sort teve 45 comparações
+
+2. Compare:
+o Complexidade do Merge Sort → O(n log n)
+o Complexidade do Quick Sort → média O(n log n), pior caso O(n2)
+- Ambos em alguns casos tiveram mesma eficiencia (n log n) mas o Quick sort tem casos em
+  que acaba sendo bem menos eficiente (n^2)
+
+3. Explique:
+o Por que o Quick Sort pode degradar?
+- Porque dependendo do pivo selecionado a divisao da lista pode ficar muito desbalanceada,
+  com um lado tendo poucos elementos e outro com uma lista grande a ser ordenada
+
+o Por que o Merge Sort exige memória extra?
+- Porque ele precisa criar sublistas temporarias alocando espaços na memoria com o malloc no caso do c++
