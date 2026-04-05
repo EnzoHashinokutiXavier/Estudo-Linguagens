@@ -4,7 +4,7 @@
 		"postgres-jdbc-19d160e0bc1-7d4635f74e68835c": {
 			"provider": "postgresql",
 			"driver": "postgres-jdbc",
-			"name": "postgres",
+			"name": "postgres-faculdade",
 			"save-password": true,
 			"configuration": {
 				"host": "localhost",
@@ -15,8 +15,14 @@
 				"home": "postgresql-x64-18",
 				"type": "dev",
 				"closeIdleConnection": true,
+				"properties": {
+					"connectTimeout": "20",
+					"loginTimeout": "20",
+					"escapeSyntaxCallMode": "callIfNoReturn",
+					"showALLDataBases": "true"
+				},
 				"provider-properties": {
-					"@dbeaver-show-non-default-db@": "false"
+					"@dbeaver-show-non-default-db@": "true"
 				},
 				"auth-model": "native"
 			}
