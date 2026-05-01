@@ -1,183 +1,181 @@
 # AWS IAM
-Identity and Access Management
+## Identity and Access Management
 
-O AWS Identity and Access Management (IAM) é um serviço da AWS que ajuda a controlar quem está autenticado (assinado) e autorizado (tem permissões) para usar os recursos da AWS.
+### What is IAM? (Critical for Exam)
 
-- Controle Granular de Acesso a AWS: Com o IAM, você pode criar usuários, grupos, papéis e políticas de permissão para controlar o acesso aos serviços e recursos da AWS de uma maneira granular. Por exemplo, você pode permitir que um usuário tenha acesso somente leitura ao Amazon S3 e acesso total ao EC2.
+- **Manages access** to AWS services and resources
+- **Free service** (never charged)
+- Global service (not region-specific)
+- Enables secure access without sharing root account credentials
+- Used to implement **Principle of Least Privilege** (most important for security)
 
-- Compartilhamento Seguro de Acesso: O IAM permite compartilhar o acesso à sua conta AWS de maneira segura. Em vez de compartilhar suas credenciais de root, você pode criar vários usuários IAM, cada um com suas próprias credenciais e permissões.
+### IAM Core Concepts
 
-- Identidade Federada: Com o IAM, você também pode permitir usuários que já tenham senhas em outros lugares, como na sua rede corporativa ou em um provedor de identidade baseado em SAML, a obter acesso temporário à sua conta AWS.
+**Authentication vs. Authorization:**
+- **Authentication**: Who are you? (username/password, MFA)
+- **Authorization**: What can you do? (permissions, policies)
 
-- Compatível com Multi-Fator Authentication (MFA): O IAM é compatível com a autenticação de vários fatores para fornecer uma camada adicional de proteção de segurança ao gerenciar o acesso aos serviços e recursos da AWS.
+### IAM Components (Understand These)
 
-- Integrado com AWS Services: O IAM está integrado com todos os serviços da AWS, o que significa que você pode definir permissões para qualquer serviço que desejar.
+**1. Users**
+- Individual accounts for people or applications
+- Each has unique credentials
+- Example: Alice (developer), Bob (DevOps)
 
-- Auditoria com AWS CloudTrail: Com o AWS CloudTrail, você pode registrar todas as ações de usuários e APIs IAM para fins de auditoria.
+**2. Groups**
+- Collection of users
+- Simplifies permission management
+- All users in group get same permissions
+- Example: Developers group, Finance group
 
-- Gratuito: O IAM é um recurso gratuito da AWS; você só paga pelos outros recursos da AWS que seus usuários acessam.
+**3. Roles**
+- For AWS services and federated users
+- Temporary credentials (automatic rotation)
+- Use when: EC2 needs S3 access, Lambda needs DynamoDB access
+- NOT for regular users (use Users for that)
 
-Em suma, o AWS IAM é um serviço de segurança crítico que ajuda a proteger o acesso aos recursos da AWS, permitindo que você controle quem pode fazer o quê em sua conta AWS.
+**4. Policies**
+- JSON documents defining permissions
+- Types:
+  - **Managed Policies**: Pre-built by AWS (AmazonEC2FullAccess)
+  - **Customer Policies**: Custom-created
+  - **Inline Policies**: Single user/group/role (not recommended)
 
-### Estrutura
+### Root Account vs. IAM Users (Important for Exam)
 
-- Conta master (root)
-    - Users
-        - Marcos -> EC2
-        - Alice -> EC2
-        - João -> S3
-    - Groups
-        - Adimin -> EC2, S3
-        - Developer -> Lambda
-        - um usuário recebe as politicas que foram associados ao grupo 
-    - Roles
-        - relacionado a serviços
-        - regras de acesso de maquinas a serviços
+| Feature | Root | IAM User |
+|---------|------|----------|
+| **Default** | Full access to everything | Only assigned permissions |
+| **Access Keys** | Can create (not recommended) | Can create |
+| **MFA** | Should enable | Should enable |
+| **Best Practice** | Lock away, don't use daily | Use for daily tasks |
+| **Recovery** | Only account recovery tool | IAM users can't recover account |
 
-### Grupos de usuários
+**Critical Rule**: Never use root account for daily work!
 
-- Criar um grupo
-    - ex : criar o grupo chamado Admin 
+### Policies Explained
 
-- Políticas de permissões
-    - Onde indica quais serviços tem acesso
-    - ex : AmazonEC2FullAccess
+**Example IAM Policy (JSON):**
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::my-bucket/*"
+    }
+  ]
+}
+```
 
-### Usuários
+**Components:**
+- **Effect**: Allow or Deny
+- **Action**: What API calls are allowed (e.g., s3:GetObject, ec2:RunInstances)
+- **Resource**: What AWS resources (identified by ARN)
 
-- Adicionar usuários
-    - nome
-    - Fornecer acesso a console
-    - senha personalidade ou gerada automaticamente
+**ARN (Amazon Resource Name) Format:**
+`arn:partition:service:region:account-id:resource`
 
-- Acesso ao console
-    - Centro de identidade
-    - IAM
+Example: `arn:aws:s3:::my-bucket/folder/*`
 
-- Grupos de usuários
-    - Seleciona os grupos que o usuário terá as permissões
+### Principal of Least Privilege (Key for Exam)
 
-# Identity center
+- **Grant only minimum permissions needed** for the job
+- Don't give:
+  - Admin access to non-admins
+  - All services access when only S3 needed
+  - Production access to developers
+- Review permissions regularly
+- Remove unused permissions
 
-- Sucessor do Single Sign-On (SSO)
+### MFA (Multi-Factor Authentication)
 
-- Compartilhar o usuário entre os serviços
+**Why Use**: Significantly increases security
 
-- IAM : Acesso a criar usuarios grupos e regras
-- Identity Center : vantagens de se fazer tudo isso e associar a aplicações
+**Methods:**
+- Hardware tokens (hardware device)
+- Virtual MFA devices (Google Authenticator, Authy)
+- U2F (USB keys)
+- SMS (not recommended, less secure)
 
-# MFA
-Multi Factor Autentication
+**Best Practice**: Require MFA for all users, especially root and admins
 
-A Autenticação Multifator (MFA) é um método de controle de acesso que exige que um usuário verifique sua identidade usando duas ou mais evidências (fatores) antes que o acesso seja concedido. Estes fatores podem ser algo que o usuário sabe (como uma senha), algo que o usuário tem (como um telefone celular ou um token de hardware) e algo que o usuário é (como uma impressão digital ou reconhecimento facial).
+### AWS Organizations (For Multi-Account Management)
 
-- Segurança Aprimorada: O principal benefício da MFA é que ela aumenta significativamente a segurança, tornando muito mais difícil para os invasores ganharem acesso não autorizado a um sistema. Mesmo que um fator de autenticação seja comprometido (por exemplo, se uma senha for roubada), os outros fatores ainda protegem o sistema.
+- **Centrally manage** multiple AWS accounts
+- **Consolidate billing**: Single bill for all accounts
+- **Service Control Policies (SCPs)**: Restrictions across accounts
+- Helpful for: Large companies, different departments, compliance requirements
 
-- Diversos Métodos de Autenticação: A MFA pode usar uma variedade de métodos de autenticação, como códigos de verificação por SMS, aplicativos de autenticação, tokens de hardware, impressões digitais, reconhecimento facial e muito mais.
+### Access Methods
 
-- Compatibilidade: A MFA é compatível com muitos sistemas e serviços, incluindo a maioria das plataformas de nuvem (como AWS, Google Cloud e Azure), serviços de email, redes sociais, plataformas de pagamento online, entre outros.
+**1. AWS Management Console**
+- Web interface
+- Requires username + password + MFA
 
-- AWS MFA: A AWS suporta MFA e recomenda que os usuários a utilizem para proteger suas contas. Com a MFA ativada, quando um usuário se conecta à AWS, ele é solicitado a inserir seu nome de usuário e senha (primeiro fator) e um código de autenticação de um dispositivo MFA (segundo fator).
+**2. AWS CLI**
+- Command line
+- Requires access keys (Access Key ID + Secret Access Key)
+- Use `aws configure` to set up
 
-Resumindo, a Autenticação Multifator é uma medida de segurança essencial que protege os sistemas de acesso não autorizado, exigindo que os usuários verifiquem sua identidade com vários fatores de autenticação.
+**3. AWS SDKs**
+- Programming libraries (Python, Java, JavaScript, etc.)
+- For applications to access AWS services
+- Requires programmatic credentials
 
-- google authenticator
-    - autenticação de duas etapas
-    - 6 digitos que mudam a cada 30 segundos
-    - acessado no telefone
+**4. CloudShell**
+- Browser-based terminal
+- Already authenticated
+- No credentials needed
 
-# AWS Organizations
+### Access Keys (Important for Security)
 
-O AWS Organizations é um serviço da AWS que permite a você centralizar e gerenciar de forma unificada várias contas AWS. Com o AWS Organizations, você pode criar uma organização para administrar suas contas da AWS a partir de um único local.
+- Like username/password for programmatic access
+- Have Access Key ID + Secret Access Key
+- **Never share or hardcode** in code
+- Store securely in environment variables or AWS Secrets Manager
+- Rotate regularly (delete old, create new)
 
-- Gerenciamento Centralizado de Contas: O AWS Organizations permite agrupar e gerenciar todas as suas contas AWS de um único local centralizado. Isso facilita o gerenciamento de contas e recursos em uma organização.
+### Reporting & Compliance
 
-- Controle de Acesso Hierárquico: Com o AWS Organizations, você pode criar uma estrutura hierárquica de Unidades Organizacionais (OUs) para agrupar suas contas. Isso ajuda a organizar suas contas em uma estrutura que melhor se alinhe com o uso dos recursos em sua organização.
+**Credential Report:**
+- List of all users
+- When password was last changed
+- MFA status
+- Last activity date
 
-- Políticas de Controle de Serviço: O AWS Organizations oferece políticas de controle de serviço (SCPs) que permitem que você controle as permissões para as contas em sua organização. Isso permite que você aplique regras de acesso uniformes em todas as suas contas.
+**Access Advisor:**
+- Shows which services each user accessed
+- Identifies unused permissions
 
-- Consolidação de Cobrança: O AWS Organizations também oferece a capacidade de consolidar sua cobrança em todas as suas contas AWS, o que pode simplificar a gestão de custos e permitir um melhor rastreamento e controle dos gastos da AWS.
+### Identity Center (Successor to SSO)
 
-- Automação: Com o AWS Organizations, você pode automatizar a criação e o gerenciamento de contas por meio de APIs e integrações com outras ferramentas da AWS, como o AWS CloudFormation.
+- **Single Sign-On** for multiple AWS accounts and applications
+- Better than traditional IAM for:
+  - Multi-account management
+  - Integration with corporate directories (Active Directory, Okta)
+  - Single login for multiple tools
 
-Em suma, o AWS Organizations é uma ferramenta poderosa para empresas e equipes que gerenciam várias contas da AWS, permitindo o gerenciamento centralizado de contas, a aplicação de políticas em todas as contas, a consolidação de cobranças e a automação de tarefas de gerenciamento de contas.
+### Security Best Practices for Exam
 
-- Politicas em JSON
+1. **Enable MFA** for all accounts
+2. **Use IAM Users**, not root account
+3. **Use Groups** to manage permissions
+4. **Use Roles** for service-to-service access
+5. **Apply Principle of Least Privilege**
+6. **Rotate Access Keys** regularly
+7. **Delete Unused** credentials
+8. **Use Strong Passwords** and password policies
+9. **Audit Regularly** with reports and CloudTrail
 
-- Precisa dele habilitado para trabalhar com o identity center
+### Summary for CLF-C02
 
-- AWS Organizations -> Criar uma organização
-
-# Usuários IAM  x  IAM Identity Center
-
-- Identity and Access Management (IAM)
-    - Acesso a serviços e recursos da plataforma da aws
-    - Usuário que configura maquinas virtuais
-
-- IAM Identity Center
-    - Criar usuários e grupos para quem pode usar aplicações da sua empresa
-    - Usuário final
-
-# Senhas
-
-- IAM -> Configurações da conta -> Políticas de senha
-    - Aplica tanto pro IAM quanto p identity center
-
-- Padrão IAM ou Personalizado
-
-- Empresas alteram os requisitos mínimos de senha para aumentar a segurança
-
-- Letras maiusculas, minusculas, numeros, caracteres especiais, quantia minima de caracteres, tempo de expiração de senha, permitir alterar, reutizilar senha 
-
-# Acessar os serviços da aws
-
-- Console Web
-
-- CLI
-    - Comand line interface
-    - script
-    - software que pede as credenciais da aws
-        - aws cli é um plugin
-    - digitar comandos, gerenciar scripts
-    - autenticação
-        - Username
-        - Access Key
-        - Private key
-        - usuário -> credenciais de segurança -> chaves de acesso
-
-- Cloudshell
-    - quase identico ao cli
-    - não está instalado local na sua maquina
-    - não precisa de autenticação pq está instalada dentro da aws
-
-- SDK
-    - aplicação acessando serviços da AWS
-        - como uma api
-    
-### Chave de acesso 
-- CLI
-- Código local
-    - ambiente local acesse a sua conta aws
-- Aplicação em serviço computacional na nuvem
-- Serviços de terceiros
-- Aplicação fora da aws
-Chave de acesso também gera uma chave de acesso secreta  
-Só se tem acesso as chaves quando elas são geradas, baixa o arquivo .csv para ver depois
-
-# AWS Accounts : REPORTS  
-Os reports são relatórios   
-verificar oq cada usuário tem feito ou tem acesso
-- Username
-    - Credentials Report CR
-        - usuários
-        - data de criação
-        - senha abilitada
-        - ultima utilização
-        - ultima troca de senha
-        - proxima troca de senha
-        - MFA abilitado
-        - ...
-    - Access Advicer AA
-        - Acesso a nivel de usuário
-        - quais serviços permitidos para o usuario
-        - alguns serviços para ter acesso precisam de acesso a outros 
+- **IAM** is the security foundation of AWS
+- Always use **Users** for people, **Roles** for services
+- Use **Groups** for easier management
+- **Policies** grant permissions in JSON
+- **Root account** = backup only
+- **MFA** = essential security
+- **Principle of Least Privilege** = golden rule
+- This service is **FREE**

@@ -1,129 +1,192 @@
 # Virtual Private Cloud (VPC)
 
-Amazon VPC é um serviço que permite criar uma rede virtual isolada e lógica dentro da nuvem AWS, proporcionando controle total sobre o ambiente de rede, incluindo endereçamento IP, sub-redes, tabelas de rotas e gateways de segurança. Ela simula um data center tradicional, permitindo lançar recursos como instâncias EC2 e RDS em sub-redes públicas ou privadas para maior segurança.
+### What is VPC? (Critical for Exam)
 
-![alt text](image-4.png)
+- **Private, isolated network** within AWS
+- Simulates a traditional corporate data center
+- You control IP addressing, subnets, routing, security
+- **Every AWS account has a default VPC** (can use immediately)
+- **Regional service**: Each VPC exists in one region
 
-- cada subrede deve estar em cada zona
-    - consegue manter 4091 endereços de ip por subrede
+### VPC Components (Must Know)
 
-- internet gateway é o que controla o acesso a internet
-    - ele sabe chegar em todas as subnets dentro do vpc
+**1. Subnets**
+- **Segments** of VPC with their own IP range
+- **Public Subnet**: Has internet access (for web servers)
+- **Private Subnet**: No internet access (for databases)
+- Must be in single Availability Zone
+- Can have 4,091 IP addresses per subnet
 
-![alt text](image-5.png)
+**2. Internet Gateway**
+- **Gateway** allowing internet access
+- Enables instances in public subnets to communicate with internet
+- Must attach to VPC to use
+- Only one per VPC
 
-- O VPC precisa de 4 pontos :
-    - VPCs
-    - Sub-redes
-    - Tabelas de rotas
-    - Gateways
+**3. Route Table**
+- **Rules** (routes) directing traffic
+- Determines where packets are sent
+- Example: Route all 0.0.0.0/0 traffic to Internet Gateway
+- Associated with subnets
 
-- VPC possui um endereçamento de ipv4 base, as subnets consegue saber seus endereços por calculadora de endereçameno de ip de subnet
+**4. Network ACL (Access Control List)**
+- **Stateless firewall** at subnet level
+- Protects entire subnet (all instances)
+- Inbound and outbound rules
+- Processes rules top-to-bottom (order matters)
+- Less commonly used than Security Groups
 
-- Deve ir em Gateways da Internet e associar VPC
+**5. Security Groups**
+- **Stateful firewall** at instance level
+- Protects individual EC2 instances
+- Inbound: What traffic is allowed IN
+- Outbound: What traffic is allowed OUT
+- Default: All inbound blocked, all outbound allowed
 
-- Deve adicionar as subnets criadas a tabela de roteamento para permitir trafego
+### Public vs. Private Subnets (Key Concept)
 
-- Tabela de roteamento serve para ensiar a subnet a chegar no gateway
+**Public Subnet:**
+- Has route to Internet Gateway
+- Instances get public IP address
+- Directly accessible from internet
+- Use for: Web servers, load balancers, NAT gateways
 
-- Crie instancia no ec2, na configuração de rede coloque na vpc que criou, seleciona uma subrede, habilita ip publico
+**Private Subnet:**
+- No direct route to internet
+- Instances use private IP only
+- Cannot be accessed directly from internet
+- Use for: Databases, application servers, sensitive data
+- Can access internet via NAT Gateway in public subnet
 
-- Muitas possibilidades, crie suas redes da forma que voce quiser, crie um vcp e subredes pra cada projeto que fizer
+### NAT Gateway (Network Address Translation)
 
-# NACL - Network Access List
+- **Allows private instances** to access internet
+- Placed in public subnet
+- Translates private IPs to public IP for outbound
+- Incoming connections still blocked (no inbound allowed)
+- **Charged hourly** (not cheap)
+- Alternative: NAT instance (EC2, self-managed, cheaper)
 
-lista de regras que define tudo oq deseja passar pela internet, praticamente um firewall
+### VPC Peering
 
-- Enquanto o security group protege a instancia ec2, a ACL protege a subnet inteira, e todas as instancias dentro dela
+- **Connect two VPCs** to communicate as if on same network
+- Both VPCs can be in different accounts or regions
+- **Not transitive** (if VPC A connects to B, A doesn't automatically connect to C)
+- Use case: Multi-account architecture, partner networks
 
-- Network ACLs sao criadas automaticamente ao criar o VPC
+### VPC Endpoints (Important for Exam)
 
-- Varias regras dando permissões e por ultimo uma bloqueando tudo
+**Connect privately** to AWS services **without using internet**
 
-- Le de cima para baixo -> vai verificando a cada item se é um acesso permitido, ao encontrar para de ler, se chegar ao final sem ser encontrado é barrado
+**Two Types:**
 
-- A ordem das regras influenciam o trafego
+1. **Gateway Endpoints** (Free)
+   - For S3 and DynamoDB only
+   - Restricts traffic through Route Table
+   - Private access to these services
 
-![alt text](image-6.png)
+2. **Interface Endpoints** (Charged)
+   - For other AWS services (EC2, Lambda, SNS, etc.)
+   - Uses ENI (Elastic Network Interface)
+   - Access via DNS name or IP
 
-# VPC Peering
+**Why Use:**
+- Enhanced security (data doesn't traverse internet)
+- Reduced data transfer costs
+- Better performance
 
-Uma host dentro de uma subnet dentro de um vpc não consegue por default acesso a outra subnet dentro de outro vpc
+### Direct Connect (On-Premises Connectivity)
 
-O VPC Peering permite instancias em vpcs diferentes se comunicarem por conexão de pareamento
+- **Dedicated network connection** between on-premises and AWS
+- **Consistent performance** (not internet)
+- High cost but essential for:
+  - Guaranteed bandwidth
+  - Compliance requirements
+  - High volume data transfer
+  - Real-time applications
 
-- A conexão não é interna, é via internet
+### Site-to-Site VPN
 
-# VPC Endpoint 
+- **Encrypted tunnel** between on-premises network and VPC
+- Uses internet (variable performance)
+- Cheaper than Direct Connect
+- Good for: Backup connection, lower volume
 
-VPC Peering e VPC Endpoint são diferentes. Peering conecta duas VPCs inteiras para comunicação bidirecional privada. Endpoints fornecem conexão privada e segura a serviços específicos (como S3, DynamoDB) ou outros serviços VPC sem expor tráfego à internet.
+### AWS PrivateLink
 
-- Conexão interna
+- **Share services privately** between VPCs and on-premises
+- For large-scale deployments (more scalable than Peering)
+- Service Provider VPC → Network Load Balancer → Consumer VPCs
+- Simplified network architecture
 
-- Gateway : S3, DynamoDB
+### AWS Transit Gateway (Multi-VPC Connectivity)
 
-- Interface : Outros serviços 
+- **Hub-and-spoke** architecture for VPCs
+- Simplifies connecting many VPCs
+- Better than VPC Peering for 3+ VPCs
+- Can also connect on-premises networks
+- **Central control** of routing
 
-Ex : todos serviços dentro de uma tabela de roteamento passam a apontar direto para um serviço de S3
+### VPC Flow Logs
 
-# VPC Flow Logs
+- **Monitor traffic** flowing through VPC
+- Logs: Source/destination IP, port, action (accept/reject)
+- Destination: CloudWatch Logs or S3
+- Useful for: Troubleshooting, security analysis, compliance
 
-Se monitora oq passa pela VPC abilitando o flow logs
+### Network Architecture Best Practices
 
-- Verificar o trafego que acontece dentro da VPC
+1. **Multi-AZ**: Create subnets in multiple AZs for HA
+2. **Public/Private Separation**: Don't put everything in public subnets
+3. **Smallest CIDR Blocks**: Use /24 or smaller for flexibility
+4. **NAT Gateways in Public**: Only public subnets have NAT gateways
+5. **Route Tables**: Separate for public and private subnets
+6. **Security Groups**: Specific rules, not permissive
+7. **NACLs**: Usually leave default (redundant with Security Groups)
 
-- Log de Fluxo : Cria um arquivo em uma frequencia determinada pelo usuario
+### Common VPC Setup
 
-# VPN
+```
+VPC (10.0.0.0/16)
+├── Public Subnet-1 (10.0.1.0/24) in AZ1
+│   ├── Internet Gateway
+│   ├── NAT Gateway
+│   └── EC2 instance (public IP)
+├── Public Subnet-2 (10.0.2.0/24) in AZ2
+│   └── Load Balancer
+├── Private Subnet-1 (10.0.3.0/24) in AZ1
+│   └── RDS Database
+└── Private Subnet-2 (10.0.4.0/24) in AZ2
+    └── Application Server
+```
 
-Software local que conecta ao VPN Gateway que conecta com o recurso que o usuario tem permissao de acesso
+### Default VPC vs. Custom VPC (Know the Difference)
 
-- VPN AWS Client 
-    - Windows, Linux e Mac
+| Feature | Default | Custom |
+|---------|---------|--------|
+| **Created** | Automatically for you | You create |
+| **Subnets** | Public subnets only | You choose public/private |
+| **Internet Access** | Automatic | You configure |
+| **Use For** | Learning, testing | Production |
 
-- É um VPN que voce configura dentro da sua empresa 
+### Exam Focus
 
-- É melhor configurar uma vpn pra toda sua empresa ter acesso aos serviços do que baixar o vpn cloud para todos os funcionarios
+1. **VPC is regional** not global
+2. **Subnets are in single AZ**
+3. **Internet Gateway** = internet access
+4. **NAT Gateway** = private to internet (outbound only)
+5. **Route Table** = directions for traffic
+6. **Security Groups** = instance firewall (stateful)
+7. **NACLs** = subnet firewall (stateless)
+8. **VPC Peering** = connect 2 VPCs
+9. **VPC Endpoints** = private access to services
+10. **Transit Gateway** = hub for many VPCs
 
-- Site-to-site VPN : Criar um túnel entre sua empresa e a AWS
-    - Precisa de uma velocidade de link maior / confiável
+### Summary
 
-# AWS PrivateLink
-
- O VPC Peering não é escalável, então para empresas que precisam conectar sua VPC a varias outras para fornecer serviços, é criado o Private link
-
- - É alocado um NLB (Network Load Balancer) do lado da aplicação que aponta para uma ou varias Interfces que deseja que aquela ferramenta tenha acesso
-
-- Totalmente escalavel
-
-![alt text](image-7.png)
-
-# Direct Connect
-
-Conexão pela internet : Lado do cliente com CG (Costume Gateway) que se liga ao VPG (Virtual Private Gateway) 
-    - Se conectam pela internet
-    - Não tem uma garantia de banda
-
-- Direct Connect veio para resolver esse problema
-
-Link (cabo) dedicado entre você e a AWS
-    - fornecido pela sua operadora
-    - provevelmente ja tem um link dedicado
-    - se não tiver ela vai ter que passar um cabo e ligar nas portas de entrada dos data centers da AWS
-    - pode chegar aos 100 gigas de velocidade
-
-- É cobrado 16.425,00 dolares por mes por 100 gigas de velocidade + o link da telecom 
-    - Muito caro, mas garantia de banda sem problema de internet
-
-Valor alto mas para uma empresa de grande porte é um investimento muito bom com um retorno excelente 
-
-# AWS Transit Gateway
-
-Quando tiver muitas VPCs para serem interligadas, use o AWS TG
-
-- Conecta todas ao Transit Gateway 
-
-- Melhor do que fazer um VPC Peering entre todas VPCs da sua empresa
-
-- Pode fazer conexão das instalações físicas da sua empresa ao AWS TG
-    - Via Direct Connect ou Site-To-Site VPN
+- VPC provides network isolation and control
+- Always use public/private subnet separation
+- Security Groups are more important than NACLs (use Security Groups)
+- NAT Gateway allows private instances to access internet
+- VPC Endpoints prevent data from crossing internet
+- Direct Connect for dedicated on-premises connectivity

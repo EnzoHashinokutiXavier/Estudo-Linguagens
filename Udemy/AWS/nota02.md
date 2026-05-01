@@ -1,300 +1,140 @@
-# AWS S3
-### Simple storage service
-
-- "HD na nuvem"
-
-- Escalabilidade infinita : sem tamanho máximo
-
-- Doc, xls, mp3, mp4, etc
-
-- PAY-AS-YOU-GO
-
-- Durabilidade 99.999...% : o quão é confiável
-
-- S3 é como um armário, que pode criar várias gavetas
-- As gavetas seriam as Buckets, como pasta no windows
-
-- Netflix pagava 19 milhoes por mes para usar os serviços do S3
-
-- O S3 pode ser barato como pode ser muito caro também
-    - Depende do quao rapido voce quer acessar seus objetos
-
-- O S3 nao depende de região, ele é global
-
-- Da para hospedar um website estático no S3
-
-### Estrutura do S3
-
-- Bucket : pasta raiz onde ficam os arquivos
-- Objetos : arquivos
-- Key : caminho + nome do objeto
-- Region : local onde a bucket foi hospedada fisicamente
-
-### Buckets
-
-- upload de arquivos ou folders (pastas)
-
-- pode criar quantas buckets quiser, aonde quiser
-
-- cada bucket tem nome único mundialmente
-
-- 3 a 63 caracteres, pode ter ponto e hifem
-
-- General : Recomendado para mistura de az
-- Directory : Baixissima latência, ex : jogos
-
-- Copy settings from existing bucket
-    - copiar configuração de bucket já existente
-
-- Object Ownership
-    - ACLs : lista de acessos / permissões e bloqueios
-
-- Ao criar todo acesso público é bloqueado
-
-- Tags : organizar recursos na AWS
-
-- Encriptação
-
-- Bucket key
-
-normalmente não se envia arquivos diretamente para bucket
-mas envia de algum serviço da aws através de algum software, api ou app para o S3  
-ex : servidor envia via api backup do banco de dados  
-
-só dá para deletar uma bucket se ela estiver vazia
-
-### Objeto
-
-- Os objetos são os arquivos
-
-- O tamanho máximo por aobjeto/arquivo é 5TB
-
-- Se o arquivo for maior que 5 gigas, deve ser enviado por multi-part upload
-
-- Cada objeto da bucket pertence a uma classe
-
-### Classes de armazenamento
-(storage class)
-
-- S3 Standard (padrao)
-    - Alta durabilidade, disponibilidade e baixa latencia
-    - acesso frequente
-    - sites, arquivos usados diariamente
-
-- S3 Intelligent-Tiering
-    - Move automaticamente entre níveis com base no uso
-    - padrão de acesso imprevisível 
-    - fotos de um app que o usuário pode ou não acessar
-
-- S3 Standard-IA
-    - IA = infrequent access, meor custo, cobra por acesso
-    - acesso raro, mas precisa estar disponível rápido
-    - backup mensal de sistemas críticos
-
-- S3 One Zone-IA
-    - Igual standard-ia mas em uma AZ
-    - dados acessados raramente e regraváveis
-    - backup de arquivos que podem ser recriados
-
-- S3 Glacier Instant Retrival
-    - Acesso quase imediato a arquivos de arquivamento
-    - arquivos antigos acessados a qualquer momento
-    - histórico de faturamento 
-
-- S3 Glacier Flexible Retrival
-    - Mais barato, mas leva minutos ou horas para acesso
-    - arquivamento a longo prazo, pouco acesso
-    - arquivos de compliance de 7 anos atrás
-
-- S3 Glacier Deep Archive
-    - Mais barata, ideal para arquivamento de longo prazo
-    - recuperação demora até 12h
-    - notas fiscais antigas exigidas por lei por 10 anos
-
-- S3 Reduced Redundancy (obsoleta)
-    - Menor durabilidade e menor custo, nao recomendada
-    - dados não críticos (quase em desuso)
-    - não utilizar atualmente
-
-Antes de armazenar arquivos no S3, pense na frequencia de acessos  
-Mover entre classes você paga
-
-### Oq pode fazer na bucket
-
-- copiar uri (uniform resource identifier)
-
-- abrir arquivo
-    - renomear
-    - editar a classe dele
-    - editar as tags do arquivo
-    - compartilhar com uma presigned url
-
-- Access control list
-    - criar uma ACL pro arquivo em específico
-
-- Object overview
-    - owner
-    - aws region
-    - last modified
-    - size
-    - type
-    - key
-    - s3 uri
-    - amazon resource name (arn)
-    - entity tag (Etag)
-    - object url
-
-- Block puclic access (bucket settings)
-    - acesso público
-    - bucket policy
-        - qual usuário pode acessar o arquivo
-        - acessar, deletar ou somente modificar o nome
-        - controle total
-        - politicas em arquivo json
-        ```
-        {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::meu-bucket/*"
-            }
-        ]
-        }
-        ```
-
-- Hospedar um site 100% estatico (não dinâmico)
-    - upload arquivo html
-    - acesso tem que ser público
-    - aplicar bucket policy
-```
-    {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": [
-                "s3:GetObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::Bucket-Name/*"
-            ]
-        }
-    ]
-}
-```
-    - habilitar Static website hosting
-    - digitar o nome do arquivo index
-    - acessar no Bucket Website Endpoint
-
-### Calculator AWS
-- calculator.aws
-- calcular custos 
-- ex : 
-    - 10 tera no standard = 235 dol por mês  
-    - no deep archive = 10 dol por mês
-    - no one zone = 102 dol por mês
-
-### Versionamento
-
-- Permite manter várias versões do mesmo objeto
-
-- Quando deleta um arquivo, somente esconde o arquivo
-    - delete marker
-    - marker falando que foi deletado
-    - se remover o delete marker ele volta
-
-- Life cicle configuration
-    - objetos removidos em certo tempo sem alteração
-
-- É cobrado o preço por cada versão do arquivo
-
-### Replication
-
-- replicar arquivos de uma bucket em outra
-
-- Asynchronous - é uma cópia assincrona automatica
-
-- Same Region Replication (SRR)
-    - Dentro da mesma região
-
-- Cross Region Replication (CRR)
-    - exemplo : objeto no US copiado numa bucket de UK
-
-- versionamento deve estar ativado nas duas buckets
-
-- filtro do que é replicado (que tipo de arquivo)
-
-- Job
-    - acontece em cross region
-    - tarefa para executar a replicação
-    - fala em json oq foi feito e copiado
-
-- arquivo duplicado paga dobrado
-
-- Bom para backup para caso perde arquivos de uma bucket 
-
-- Util para servidores de diferentes regioes terem acessoas a mesmo arquivos (cada um em uma bucket ligada a outra)
-
-### S3 Encryption
-
-- Todos os objetos são encriptados 
-
-- Tipos :
-
-    - Em Repouso : At Rest
-        - Quando o objeto está na bucket
-
-    - Em Trânsito : In Transit
-        - Quando o objeto está em processo de :
-        - Upload
-        - Download
-        - Read
-        - Write
-
-- Repouso 
-
-    - SSE-S3 : A chave é gerenciada pela aws
-        - Server-side encryption
-
-    - SSE-KMS : A chave é gerenciada pelo serviço KMS
-        - Server-side encryption with AWS Key Management Service keys
-        - serviço dentro da aws que você administra
-
-    - DSSE-KMS: O cliente é responsável pela chave
-        - Dual-layer server-side encryption with AWS Key Management Service keys
-
-- Transito
-
-    - HTTPS
-
-### Enviar arquivos
-
-- Storage gateway  
-
-    - Dispositivo que fica na sua empresa 
-    - Não mais usado fisicamente, somente aplicação
-    - Armazena tudo localmente e envia uma cópia para bucket
-
-    - File gateway
-
-    - Volume gateway
-
-    - Tape gateway
-
-Como enviar arquivos via internet para uma bucket pode demorar muitos dias para grande quantia de dados, usasse uma aplicação instalada no seu servidor de storage gateway para fazer uma conexão direta com a bucket
-
-- Snow Family
-
-    - snowcone - 8 TB em HDD ou 14 TB em SSD
-
-    - Snowball EDGE: 
-        - Otimizado para armazenamento : 210 TB em SSD
-        - Otimizado para computação : 28 TB
-    
-    - Snowmobile : até 100 PB por carreta física
+# Amazon S3
+## Simple Storage Service
+
+### What is S3?
+
+- **Unlimited, scalable object storage** in the cloud
+- Stores any file type: documents, images, videos, logs, backups
+- Pay only for storage used and data transfer
+- 99.99% durability (not the same as availability)
+- Global service (not region-specific for access, but buckets are region-specific)
+
+### S3 Use Cases
+
+- Static website hosting
+- Backup and archival
+- Big Data analytics
+- Application logs
+- Media distribution
+- Data lakes
+
+### S3 Structure (Important for Exam)
+
+- **Bucket**: Root container (like a folder in Windows)
+  - Unique name worldwide
+  - Created in a specific region
+  - Can contain unlimited objects
+
+- **Object**: File (documents, images, videos, etc.)
+  - Maximum size: 5TB (use multi-part upload for files > 5GB)
+  - Each object has metadata and tags
+
+- **Key**: Path + object name (e.g., `folder/subfolder/file.txt`)
+
+### Storage Classes (Know These for Exam)
+
+Choose based on access frequency and cost:
+
+| Class | Best For | Cost | Retrieval Time |
+|-------|----------|------|-----------------|
+| **S3 Standard** | Frequent access, hot data | High | Immediate |
+| **S3 Standard-IA** | Infrequent access (30+ days) | Lower | Immediate |
+| **S3 One Zone-IA** | Infrequent, non-critical data | Lowest | Immediate |
+| **S3 Glacier Instant** | Archive with occasional access | Low | Instant |
+| **S3 Glacier Flexible** | Long-term archive (backups) | Very Low | Minutes-hours |
+| **S3 Glacier Deep Archive** | Compliance, 7+ year retention | Cheapest | 12+ hours |
+| **S3 Intelligent-Tiering** | Unknown access patterns | Auto-optimized | Varies |
+
+**Exam Focus**: Understand cost vs. retrieval trade-off
+
+### S3 Security Features (Critical for Exam)
+
+**Encryption:**
+- **At Rest**: Data encrypted when stored
+  - SSE-S3: AWS manages keys (default)
+  - SSE-KMS: You control encryption keys
+  
+- **In Transit**: Data encrypted during upload/download
+  - HTTPS (enforced via bucket policy)
+
+**Access Control:**
+- **Block Public Access**: Default blocks all public access
+- **Bucket Policies**: JSON policies controlling who can access
+- **ACLs**: Access Control Lists (legacy, not recommended)
+- **Presigned URLs**: Temporary access links with expiration
+
+**Versioning:**
+- Keep multiple versions of objects
+- Enables rollback if needed
+- Each version is stored separately (increases costs)
+- Protects against accidental deletion
+
+### S3 Features for Exam
+
+**Replication:**
+- **Same Region Replication (SRR)**: Copy within same region
+- **Cross Region Replication (CRR)**: Copy to different region
+  - Requires versioning enabled in both buckets
+  - Asynchronous (automatic)
+  - Use case: Disaster recovery, data locality
+
+**Lifecycle Policies:**
+- Automatically transition objects to cheaper storage classes
+- Example: Move to Glacier after 30 days, delete after 1 year
+- Reduces storage costs significantly
+
+**Static Website Hosting:**
+- Can host static HTML/CSS/JS websites
+- Requires public bucket policy
+- Enable "Static website hosting"
+- Cannot run server-side code (use EC2 or Lambda for that)
+
+### Cost Optimization for S3
+
+- Use appropriate storage class for access patterns
+- Enable lifecycle policies to move to cheaper tiers
+- Delete unnecessary versions
+- Use S3 Intelligent-Tiering for unpredictable access
+- Monitor costs with AWS Cost Explorer
+
+### Data Transfer to S3 (Exam Focus)
+
+**For Small Amounts:**
+- Upload directly via console or CLI
+
+**For Large Amounts (Petabytes):**
+- **AWS Snow Family**: Physical devices shipped to you
+  - **Snowcone**: 8TB (HDD) or 14TB (SSD)
+  - **Snowball Edge**: 100TB (storage optimized) or 28TB (compute optimized)
+  - **Snowmobile**: Up to 100PB per truck
+  - Use case: Offline data transfer, network limitations
+
+- **AWS Storage Gateway**: On-premises device syncing to S3
+  - File gateway, Volume gateway, Tape gateway
+  - Use case: Hybrid cloud, incremental backups
+
+### Important for CLF-C02
+
+1. **Durability vs. Availability**: 
+   - Durability = data won't be lost (99.999...%)
+   - Availability = service is accessible (99.99%)
+
+2. **Storage Class Selection**:
+   - Standard: Website content, frequently accessed
+   - Standard-IA: Database backups accessed monthly
+   - Glacier: Compliance archives accessed rarely
+   - Use calculator to compare costs
+
+3. **Security First**:
+   - Always enable encryption
+   - Use bucket policies to restrict access
+   - Enable versioning for important data
+   - Use Multi-Factor Delete for extra protection
+
+### Summary
+
+- S3 is the most popular AWS service
+- Choose storage class based on access patterns
+- Enable versioning and lifecycle policies for cost optimization
+- Use appropriate security controls
+- For large data transfers, use Snow Family

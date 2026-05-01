@@ -1,126 +1,183 @@
-# Banco de Dados
+# Databases on AWS
 
-- Banco de dados relacionais :
-    - Tabelas relacionadas 
-    - Dados estruturados / complexos 
-        - Posso usar o id do cliente para criar novas tabelas com novas informações ligadas ao usuario pelo id
-    - SQL
-    - Ex : registro de transações
+### Relational vs. Non-Relational (Know the Difference)
 
-- Banco de dados não relacionais :
-    - entradas em diferentes colunas
-    - Big Data - grande quantidade de dados
-        - Mais rapida, com menor estrutura
-    - NON SQL
-    - Ex : redes sociais
+**Relational (SQL)**
+- **Structure**: Tables with rows and columns
+- **Schema**: Defined upfront, rigid
+- **Relationships**: Linked via foreign keys
+- **Best For**: Complex queries, structured data
+- **Examples**: Financial records, user accounts, inventory
+- **AWS Service**: Amazon RDS, Aurora
 
-# AWS RDS - Relational Data Base (SQL)
+**Non-Relational (NoSQL)**
+- **Structure**: Documents, key-value pairs, graphs
+- **Schema**: Flexible, schema-less
+- **Relationships**: Denormalized
+- **Best For**: High volume, unstructured, fast reads/writes
+- **Examples**: User activity logs, social media posts, IoT sensor data
+- **AWS Service**: DynamoDB, MongoDB, Cassandra
 
-- Se voce cria o data base junto com o servidor nainstancia EC2, se a instancia cai, voce perde seus dados
+### Amazon RDS (Relational Database Service)
 
-- Para maior segurança, ligue os servidores a um banco de dados fora da instancia EC2
+**What is RDS?**
+- **Managed** relational database service
+- AWS handles: backups, patches, maintenance, replication
+- You focus on: data and optimization
 
-- AWS toma conta de tudo oq é necessário para o banco de dados funcionar
-
-- PostgresSQL
+**Supported Databases:**
 - MySQL
+- PostgreSQL
 - MariaDB
 - Oracle
 - Microsoft SQL Server
-- Aurora
+- Aurora (AWS proprietary, most popular)
 
-### Aurora - recomendado para começar
+**Key Features:**
+- **Multi-AZ Deployment**: Automatic failover for high availability
+- **Read Replicas**: Scale reads by creating read-only copies
+- **Automated Backups**: Daily snapshots (no manual work)
+- **Encryption**: At rest (KMS) and in transit (SSL/TLS)
 
-- Banco de dados da aws
+**When to Use:**
+- Complex queries
+- ACID compliance needed
+- Relational data
 
-- Aumenta ou diminui o espaço de acordo com sua necessidade
+**Cost**: Charged for instance size, storage, and data transfer
 
-- Não tem free tier
+### Amazon Aurora (Most Important for Exam)
 
-- Compatibilidade com MySQL e Postgres
+- **AWS-proprietary** database (MySQL/PostgreSQL compatible)
+- **5x faster** than MySQL, **3x faster** than PostgreSQL
+- **Fully managed**: AWS handles patching, backups, scaling
+- **High Availability**: Automatic multi-AZ replication (3 copies minimum)
+- **Auto-Scaling**: Storage grows automatically (no provisioning)
+- **No Free Tier** (unlike RDS)
 
-- No mínimo 5x mais performance que o MySQL
+**Use Cases:**
+- Production workloads
+- High performance needed
+- Multi-region replication needed
 
-- 3x mais performance que o Postgres
+### Amazon DynamoDB (NoSQL - Important for Exam)
 
-![alt text](image-1.png)
+**What is DynamoDB?**
+- **Fully serverless** NoSQL database
+- **Lightning fast**: Single-digit millisecond latency
+- **Scales automatically**: No capacity planning needed
+- **Expensive**: Pay per read/write operation
+- **Global Service**: Replicates across 3+ AZs automatically
 
-![alt text](image-2.png)
+**Key Concepts:**
+- **Tables**: Like database tables
+- **Items**: Individual records (rows)
+- **Attributes**: Fields (columns) (flexible, no schema required)
+- **Partition Key**: Primary identifier (must be unique)
 
-- Está em cima de uma instancia ec2
-    - Utiliza volume EBS
-        - SSD ou HDD
-            - Acessa um disco = é lento
+**Features:**
+- **TTL (Time to Live)**: Auto-delete old items
+- **Global Tables**: Multi-region replication
+- **Streams**: Capture data changes
+- **On-demand pricing**: Good for unpredictable workloads
 
-### Elasticache
+**When to Use:**
+- High-speed data access
+- Unpredictable workloads
+- Global applications
+- IoT and real-time data
 
-Acessar um disco é lento, é muito mais rápido acessar memória.    
-Para isso a AWS criou o Elasticache
+**Cost Model:**
+- **Provisioned**: Pay for capacity reserved
+- **On-Demand**: Pay per request (higher cost but flexible)
 
-- Cache : armazenar algo por um curto espaço de tempo
+### Amazon ElastiCache (In-Memory Database)
 
-- Maior velocidade, mais caro
+**What is It?**
+- **Cache layer** in front of databases
+- **Ultra-fast**: Data in memory (microseconds vs milliseconds)
+- **Types**: Redis (more features) or Memcached (simpler)
 
-- Redis (+features) ou Memcache (+simples)
-    - Tipos open source de in memory data store
+**How It Works:**
+1. Application checks cache first
+2. If found → return immediately (cache hit)
+3. If not found → query database, store in cache (cache miss)
+4. Next similar request served from cache
 
-### Elasticache + Aurora
+**Use Cases:**
+- Session storage
+- Shopping carts
+- Leaderboards
+- User preferences
 
-- Servdores apontando para Aurora e Elasticache
+**When to Use:**
+- Read-heavy workloads
+- Reduce database load
+- Improve response time
 
-- Servidores perguntam primeiro para Elasticache por responder mais rapido
+### Amazon Neptune (Graph Database)
 
-- Se não tiver informação armazenada no elasticache :
-    - elasticache responde com cache miss (nao tem)
-    - servidores pegam informação no aurora
-    - servidores enviam informação ao usuário e registram no elasticache
+- **Graph database** for relationships
+- Best for: Social networks, recommendation engines, knowledge graphs
+- **Not on CLF-C02 exam** (too advanced)
 
-- Maior performance, load do banco de dados reduzido
+### Choosing the Right Database (Exam Focus)
 
-- Util para aplicações de grande porte
+| Need | Choose | Why |
+|------|--------|-----|
+| **Complex queries** | RDS/Aurora | SQL flexibility |
+| **High speed, unstructured** | DynamoDB | Serverless, auto-scaling |
+| **Speed up reads** | ElastiCache | In-memory fast |
+| **Relationships/graphs** | Neptune | Built for relationships |
+| **Large data sets** | Redshift | Data warehouse |
 
-# DynamoDB (NOSQL)
+### Data Warehousing (Know for Exam)
 
-- armazenar no minimo em 3 AZ
+**Amazon Redshift:**
+- Data warehouse for big data analytics
+- **Petabyte-scale** data
+- Uses SQL, but optimized for analytics (not transactions)
+- Much cheaper than RDS for massive data
 
-- serverless : nao utiliza servidores
-    - nao precisa de EC2
-    - aws gerencia tudo pra voce
+### Database Migration Service (AWS DMS)
 
-- muito rapido
+- Move databases to AWS from on-premises
+- Minimal downtime
+- Supports all major databases
 
-- autoscaling
+### AWS Glue (ETL - Extract, Transform, Load)
 
-- chave de partição : faz parte da chave primaria da tabela, usado para recuperar itens de sua tabela e alocar dados entre hosts para escalabilidade e disponibilidade
+- Prepare data for analytics
+- **Extract**: Pull from S3, RDS, etc.
+- **Transform**: Clean, organize, deduplicate
+- **Load**: Send to data warehouse (Redshift)
+- Serverless, pay per job execution
 
-- pode exportar itens para o S3
+### Summary Table (Important for Exam)
 
-# Amazon Neptune (DB)
+| Service | Type | Use Case | Cost |
+|---------|------|----------|------|
+| **RDS** | Relational | Complex SQL queries | Fixed instance cost |
+| **Aurora** | Relational | High performance | Pay per usage |
+| **DynamoDB** | NoSQL | Fast, unstructured | Per read/write |
+| **ElastiCache** | Cache | Speed up reads | Per hour |
+| **Redshift** | Data warehouse | Big data analytics | Per cluster hour |
+| **Neptune** | Graph | Relationships | Per instance |
 
-- Banco de dados ideal para Social Networks ou muitos links entre artigos 
+### Best Practices
 
-- Ex : wikipedia - varias conexões entre artigos
+1. **Multi-AZ** for production databases
+2. **Read Replicas** to scale reads
+3. **Backups** enabled automatically
+4. **Encryption** at rest and in transit
+5. **Regular testing** of recovery procedures
+6. **Monitor performance** with CloudWatch
+7. **Use right database** for use case
 
-- 3 AZ, 15 read reblicas
+### Exam Tips
 
-- Latencia muito baixa (milisegundos)
-
-- Otimizada para Dificult Queries (pesquisas complexas na base de dados)
-
-- Graph Dataset - visualizar dados
-
-![alt text](image-3.png)
-
-# AWS Glue (ETL - Extract Transform Load)
-
-- Extract : Extrair informação
-    - S3, RDS
-
-- Transform : Organizar informação
-    - Transforma informação
-    - Organiza e limpa os dados
-
-- Load : Visualizar informação
-    - Redshift
-
-Ex : planilha de compra e venda de produtos que deseja analizar algum dado
+1. RDS is managed, still need to manage DB (like OS)
+2. DynamoDB is fully serverless (no infrastructure to manage)
+3. Aurora is AWS's best relational database (faster, cheaper at scale)
+4. ElastiCache improves performance dramatically
+5. Know when to use which database type
