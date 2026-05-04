@@ -2,7 +2,7 @@
 
 "Desing the system and let ai make all code"
 
-## 6
+# 6 files you need to use every project
 
 Every project you need to create 6 files :
 - ai-workflow-rules.md
@@ -75,3 +75,37 @@ Every project you need to create 6 files :
 - open questions 
 - architecture decisions
 - session notes
+
+# Phases
+
+Each unity have : 
+
+- Goal
+- Design Decisions
+- Implementation
+- Dependencies
+- Constraints
+- Done Checklist
+
+Send the context and the model to the AI in the context section, then send the response to the code-generation AI to generate the component.
+Mark that unity as done in the progress tracker
+
+Example : 
+
+## 1.Project Setup
+- Initialize Next.js app
+- Configure TS + Tailwind
+- Clean boilerplate  
+DONE WHEN : App runs with empty screen
+
+## 2.Design System
+- Install shadcn/ui
+- Add Button, Dialog, Input
+- Set up global theme tokens
+DONE WHEN : All components render correctly
+
+## 3.Editor Layout Shell
+- Create navbar
+- Create sidebar container
+- Add layout structure   
+DONE WHEN : You see a static editor layout
