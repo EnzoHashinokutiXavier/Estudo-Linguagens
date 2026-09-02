@@ -1,144 +1,144 @@
-# AWS Architecture Center — Aula para o AWS CLF-C02
+# AWS Architecture Center — AWS CLF-C02 Study Lesson
 
-## 1. O que é o AWS Architecture Center?
+## 1. What is the AWS Architecture Center?
 
-O **AWS Architecture Center** é um hub de conhecimento da AWS para projetar, construir e operar cargas de trabalho na nuvem. Ele reúne orientações práticas, diagramas de referência, decisões arquiteturais e conteúdos sobre segurança, confiabilidade, desempenho, custo e sustentabilidade.
+The **AWS Architecture Center** is an AWS knowledge hub for designing, building, and operating cloud workloads. It brings together practical guidance, reference diagrams, architectural decisions, and content about security, reliability, performance, cost, and sustainability.
 
-Para a prova **AWS Certified Cloud Practitioner (CLF-C02)**, pense nele como uma fonte de boas práticas para transformar requisitos de negócio em uma arquitetura AWS bem projetada.
+For the **AWS Certified Cloud Practitioner (CLF-C02)** exam, think of it as a source of best practices that helps translate business requirements into a well-designed AWS architecture.
 
-> Não é um serviço que você “ativa” na conta nem que gera cobrança. É um portal de orientação e recursos arquiteturais.
+> It is not a service that you enable in an AWS account, and it does not incur charges. It is a portal for architectural guidance and resources.
 
-## 2. Componentes importantes
+## 2. Important components
 
-| Recurso | Para que serve | Relação com o CLF-C02 |
+| Resource | Purpose | CLF-C02 relevance |
 |---|---|---|
-| AWS Well-Architected Framework | Conjunto de princípios para avaliar e melhorar arquiteturas | Tema central de boas práticas na AWS |
-| AWS Well-Architected Tool | Ferramenta gratuita no Console para fazer revisões estruturadas | Ajuda a identificar riscos e melhorias |
-| Architecture Blog | Artigos técnicos e padrões de solução | Fonte de exemplos de implementações reais |
-| Architecture Diagrams | Diagramas oficiais de arquiteturas e ícones AWS | Ajuda a entender componentes e fluxos |
-| Architecture Decision Records (ADRs) | Registro das decisões e justificativas arquiteturais | Mostra como documentar escolhas técnicas |
-| AWS Solutions Library | Implementações e arquiteturas para casos de uso comuns | Acelera a adoção de padrões validados |
+| AWS Well-Architected Framework | A set of principles for assessing and improving architectures | A core AWS best-practices topic |
+| AWS Well-Architected Tool | A free Console tool for performing structured reviews | Helps identify risks and improvements |
+| Architecture Blog | Technical articles and solution patterns | Provides real-world implementation examples |
+| Architecture Diagrams | Official architecture diagrams and AWS icons | Helps explain components and data flows |
+| Architecture Decision Records (ADRs) | Documentation of architectural decisions and their rationale | Shows how technical choices can be documented |
+| AWS Solutions Library | Implementations and architectures for common use cases | Speeds up adoption of validated patterns |
 
 ## 3. AWS Well-Architected Framework
 
-O Framework é a referência mais relevante dentro do Architecture Center. Ele organiza boas práticas em seis pilares:
+The Framework is the most relevant Architecture Center reference for the exam. It organizes best practices into six pillars:
 
-1. **Excelência operacional** — operar, monitorar e melhorar sistemas continuamente.
-2. **Segurança** — proteger dados, sistemas e ativos por meio de controles e gestão de riscos.
-3. **Confiabilidade** — recuperar-se de falhas, adaptar-se à demanda e atender aos requisitos corretamente.
-4. **Eficiência de performance** — usar os recursos de computação de modo eficiente e manter essa eficiência conforme a demanda muda.
-5. **Otimização de custos** — evitar gastos desnecessários e maximizar o valor obtido com a nuvem.
-6. **Sustentabilidade** — reduzir o impacto ambiental das cargas de trabalho na nuvem.
+1. **Operational Excellence** — Run, monitor, and continually improve systems.
+2. **Security** — Protect data, systems, and assets through controls and risk management.
+3. **Reliability** — Recover from failures, adapt to demand, and meet requirements correctly.
+4. **Performance Efficiency** — Use computing resources efficiently and maintain efficiency as demand changes.
+5. **Cost Optimization** — Avoid unnecessary costs and maximize the value obtained from the cloud.
+6. **Sustainability** — Minimize the environmental impact of cloud workloads.
 
-### Como memorizar
+### Memory aid
 
-**O-S-R-P-C-S**: Operacional, Segurança, Confiabilidade, Performance, Custos e Sustentabilidade.
+**O-S-R-P-C-S**: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability.
 
-## 4. Como o Well-Architected Tool é usado
+## 4. How the Well-Architected Tool is used
 
-O **AWS Well-Architected Tool** permite criar uma *workload* (carga de trabalho) e responder perguntas por pilar. Ao final, a ferramenta aponta **High Risk Issues (HRIs)** e recomenda melhorias.
+The **AWS Well-Architected Tool** lets you create a *workload* and answer questions for each pillar. The tool then identifies **High Risk Issues (HRIs)** and recommends improvements.
 
-Fluxo típico:
+Typical workflow:
 
 ```text
-Definir a workload
+Define the workload
         ↓
-Escolher uma lente e responder às perguntas
+Select a lens and answer the questions
         ↓
-Identificar riscos altos e médios
+Identify high- and medium-risk issues
         ↓
-Priorizar correções
+Prioritize improvements
         ↓
-Revisar periodicamente
+Review regularly
 ```
 
-Ele não altera recursos automaticamente; é uma ferramenta de avaliação e orientação. Seu uso não tem custo adicional, embora os recursos AWS recomendados possam gerar custos se forem implementados.
+The tool does not automatically modify AWS resources; it is an assessment and guidance tool. There is no additional charge to use it, although AWS resources recommended and later deployed may incur costs.
 
-## 5. Lentes (*Lenses*)
+## 5. Lenses
 
-Além da revisão geral baseada nos seis pilares, o Architecture Center disponibiliza lentes para situações específicas. Uma lente adapta as perguntas do Well-Architected para um contexto, como:
+In addition to the general review based on the six pillars, the Architecture Center provides lenses for specific situations. A lens adapts Well-Architected questions to a particular context, such as:
 
 - Serverless;
 - SaaS;
 - Machine Learning;
 - Games;
 - Analytics;
-- Setor financeiro e outros cenários especializados.
+- Financial services and other specialized scenarios.
 
-Use uma lente quando a carga de trabalho tiver requisitos particulares. Por exemplo, uma aplicação serverless pode ser avaliada com foco em Lambda, API Gateway, DynamoDB, observabilidade e limites de concorrência.
+Use a lens when a workload has particular requirements. For example, a serverless application can be reviewed with emphasis on Lambda, API Gateway, DynamoDB, observability, and concurrency limits.
 
-## 6. Princípios práticos que a prova pode cobrar
+## 6. Practical principles the exam may test
 
-### Segurança
+### Security
 
-- Aplique o princípio do **menor privilégio** com IAM.
-- Proteja dados em trânsito (TLS) e em repouso (por exemplo, AWS KMS).
-- Evite usar a conta raiz nas tarefas cotidianas.
-- Ative logs e monitoramento, como AWS CloudTrail e Amazon CloudWatch.
+- Apply the **principle of least privilege** by using IAM.
+- Protect data in transit (TLS) and at rest (for example, AWS KMS).
+- Avoid using the root user for everyday tasks.
+- Enable logging and monitoring with services such as AWS CloudTrail and Amazon CloudWatch.
 
-### Confiabilidade
+### Reliability
 
-- Distribua componentes entre múltiplas **Availability Zones (AZs)** quando a alta disponibilidade for necessária.
-- Faça backups e teste a recuperação.
-- Use Auto Scaling e balanceamento de carga para lidar com variações de demanda.
-- Planeje a recuperação de falhas, em vez de depender de um único recurso.
+- Distribute components across multiple **Availability Zones (AZs)** when high availability is required.
+- Back up data and test recovery procedures.
+- Use Auto Scaling and load balancing to handle changing demand.
+- Plan for failure recovery instead of depending on a single resource.
 
-### Otimização de custos
+### Cost Optimization
 
-- Dimensione recursos corretamente (*right sizing*).
-- Desligue ou elimine recursos ociosos.
-- Escolha o modelo de preço adequado: On-Demand, Savings Plans, Reserved Instances ou Spot, conforme o perfil de uso.
-- Use tags e ferramentas como AWS Cost Explorer e AWS Budgets para visibilidade e controle.
+- Right-size resources.
+- Stop or remove idle resources.
+- Choose the suitable pricing model: On-Demand, Savings Plans, Reserved Instances, or Spot Instances, according to the usage profile.
+- Use tags and tools such as AWS Cost Explorer and AWS Budgets for cost visibility and control.
 
-### Excelência operacional
+### Operational Excellence
 
-- Automatize mudanças repetitivas com infraestrutura como código, por exemplo AWS CloudFormation.
-- Monitore métricas, logs e alarmes.
-- Documente procedimentos operacionais e aprenda com incidentes.
+- Automate repeatable changes with infrastructure as code, such as AWS CloudFormation.
+- Monitor metrics, logs, and alarms.
+- Document operational procedures and learn from incidents.
 
-## 7. Architecture Center x serviços AWS
+## 7. Architecture Center compared with AWS services
 
-| Item | O que é | Cobra pelo uso? |
+| Item | What it is | Is there a charge to use it? |
 |---|---|---|
-| AWS Architecture Center | Portal com orientações, padrões e recursos | Não |
-| AWS Well-Architected Framework | Conjunto de boas práticas | Não |
-| AWS Well-Architected Tool | Ferramenta de revisão de workloads | Não cobra pelo uso da ferramenta |
-| AWS Trusted Advisor | Recomendações para custos, performance, segurança, tolerância a falhas e limites de serviço | Alguns recursos dependem do plano de suporte |
-| AWS Config | Serviço que registra e avalia configurações de recursos | Sim, conforme uso |
+| AWS Architecture Center | A portal with guidance, patterns, and resources | No |
+| AWS Well-Architected Framework | A collection of best practices | No |
+| AWS Well-Architected Tool | A tool for reviewing workloads | No charge for using the tool itself |
+| AWS Trusted Advisor | Recommendations for cost, performance, security, fault tolerance, and service limits | Some checks depend on the AWS Support plan |
+| AWS Config | A service that records and evaluates resource configurations | Yes, based on usage |
 
-**Atenção:** Well-Architected Tool e Trusted Advisor oferecem recomendações, mas têm propósitos diferentes. O Well-Architected Tool conduz uma revisão arquitetural estruturada; o Trusted Advisor analisa a conta e os recursos para sugerir melhorias.
+**Important:** The Well-Architected Tool and Trusted Advisor both provide recommendations, but they serve different purposes. The Well-Architected Tool conducts a structured architectural review, while Trusted Advisor analyzes the account and its resources to suggest improvements.
 
-## 8. Cenário de prova
+## 8. Exam scenario
 
-**Pergunta:** Uma empresa quer revisar sua aplicação conforme boas práticas de segurança, confiabilidade, performance e custo. Ela também quer identificar prioridades de melhoria. Qual serviço ou recurso deve usar?
+**Question:** A company wants to review its application against best practices for security, reliability, performance, and cost. It also wants to identify and prioritize improvements. Which AWS resource should it use?
 
-**Resposta:** O **AWS Well-Architected Tool**, usando o **AWS Well-Architected Framework**.
+**Answer:** The **AWS Well-Architected Tool**, using the **AWS Well-Architected Framework**.
 
-**Por quê?** Ele organiza a revisão por pilares, identifica riscos e fornece orientações priorizadas.
+**Why?** It structures the review around the Framework pillars, identifies risks, and provides prioritized guidance.
 
-## 9. Revisão rápida
+## 9. Quick review
 
-- O AWS Architecture Center é um portal de conhecimento arquitetural da AWS.
-- O Well-Architected Framework possui seis pilares.
-- O Well-Architected Tool faz revisões de workloads e aponta riscos.
-- Lentes adaptam a revisão a domínios e tecnologias específicas.
-- A ferramenta é gratuita; os recursos que você decidir implantar podem ter custo.
-- Para alta disponibilidade, uma resposta comum é usar múltiplas AZs.
-- Para menor privilégio, use políticas IAM bem restritas.
-- Para comparar com o estado real de recursos da conta, lembre-se de AWS Trusted Advisor e AWS Config, cada um com finalidade própria.
+- The AWS Architecture Center is an AWS portal for architectural knowledge and guidance.
+- The Well-Architected Framework has six pillars.
+- The Well-Architected Tool reviews workloads and identifies risks.
+- Lenses tailor a review to specific domains and technologies.
+- The tool is free; AWS resources you choose to deploy may have costs.
+- For high availability, a common answer is to use multiple Availability Zones.
+- For least privilege, use restrictive IAM policies.
+- To compare recommendations with the actual configuration of account resources, remember AWS Trusted Advisor and AWS Config; each has a distinct purpose.
 
-## 10. Autoavaliação
+## 10. Self-assessment
 
-1. Quais são os seis pilares do AWS Well-Architected Framework?
-2. O AWS Architecture Center é um serviço de infraestrutura ou uma fonte de orientação?
-3. Para que serve uma lente no Well-Architected Tool?
-4. Qual a diferença principal entre Well-Architected Tool e Trusted Advisor?
-5. Por que múltiplas AZs melhoram a confiabilidade de uma arquitetura?
+1. What are the six pillars of the AWS Well-Architected Framework?
+2. Is the AWS Architecture Center an infrastructure service or a source of guidance?
+3. What is the purpose of a lens in the Well-Architected Tool?
+4. What is the main difference between the Well-Architected Tool and Trusted Advisor?
+5. Why do multiple Availability Zones improve an architecture's reliability?
 
-### Gabarito
+### Answer key
 
-1. Excelência operacional, Segurança, Confiabilidade, Eficiência de performance, Otimização de custos e Sustentabilidade.
-2. É uma fonte de orientação, padrões e boas práticas; não é um recurso de infraestrutura a ser provisionado.
-3. Ela adiciona orientações específicas para determinado domínio ou tipo de workload.
-4. O Well-Architected Tool conduz uma revisão arquitetural por pilares; o Trusted Advisor fornece verificações e recomendações sobre a conta e seus recursos.
-5. Porque uma falha em uma AZ não precisa interromper toda a aplicação quando os componentes são distribuídos adequadamente.
+1. Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability.
+2. It is a source of guidance, patterns, and best practices; it is not an infrastructure resource that must be provisioned.
+3. A lens adds guidance specific to a domain or workload type.
+4. The Well-Architected Tool carries out a pillar-based architectural review; Trusted Advisor provides checks and recommendations about an AWS account and its resources.
+5. A failure in one Availability Zone does not have to interrupt the entire application when components are distributed appropriately.
