@@ -1,0 +1,84 @@
+Enzo Hashinokuti Xavier
+802.732
+
+Atividade – Árvore Binária de Busca
+
+
+
+1.
+a) Uma Árvore Binária de Busca é uma estrutura de dados em forma de árvore onde cada nó tem no máximo dois filhos. A regra principal é que todo nó à esquerda tem valor menor que o nó pai, e todo nó à direita tem valor maior. Isso facilita muito as operações de busca, inserção e remoção.
+
+b)
+Chave: é o valor armazenado no nó, usado para comparações e buscas.
+Filho esquerdo: ponteiro que aponta para o nó filho com valor menor que o nó atual.
+Filho direito: ponteiro que aponta para o nó filho com valor maior que o nó atual.
+Pai (p): ponteiro que aponta para o nó que está acima do nó atual na árvore. A raiz não tem pai.
+
+c) NIL representa a ausência de nó, ou seja, indica que aquele ponteiro não aponta para nenhum lugar. Nós folha têm seus filhos apontando para NIL, e a raiz tem seu pai como NIL.
+
+2.
+a) A propriedade da ABB diz que, para qualquer nó x da árvore, todos os nós na subárvore esquerda têm chave menor que x.chave, e todos os nós na subárvore direita têm chave maior que x.chave.
+
+b) A árvore não atende à propriedade de ABB. O nó 60 está na subárvore esquerda de 50, sendo maior que 50.
+
+c) O nó 60 viola a propriedade, pois está na subárvore esquerda de 50 mas tem valor maior que 50. O nó 70 também fica mal posicionado por consequência da estrutura errada.
+
+3.
+Inserções: 50, 30, 70, 20, 40, 60, 80, 35
+
+a)
+      50
+     /  \
+    30    70
+   /  \  /  \
+  20  40 60  80
+      /
+    35
+
+b)
+Raiz: 50
+Nós folha: 20, 35, 60, 80
+Nós internos: 50, 30, 70, 40
+
+c) 
+Começa na raiz: 35 < 50, vai para a esquerda
+30 < 35, vai para a direita
+40 > 35, vai para a esquerda
+encontrou 35
+
+Caminho: 50 30 40 35
+
+4.
+a) Em ordem: 10, 20, 30, 40, 50, 60, 70
+
+b) Pré-ordem: 40, 20, 10, 30, 60, 50, 70
+
+c) Pós-ordem: 10, 30, 20, 50, 70, 60, 40
+
+d) O percurso em ordem visita primeiro toda a subárvore esquerda (valores menores), depois a raiz, depois a subárvore direita (valores maiores). O percurso acaba percorrendo todos os elementos do menor para o maior.
+
+5.
+a)
+Começa na raiz: 70 < 80, vai para a esquerda
+40 < 70, vai para a direita
+60 < 70, vai para a direita
+encontrou 70
+
+b)
+Começa na raiz: 110 > 80 vai para a direita
+120 > 110, vai para a esquerda
+100  < 110, vai para a direita
+nao encontrou chave
+
+c) A busca termina em NIL quando a chave procurada não existe na árvore.
+
+6.
+a) A complexidade da busca é O(h), onde h é a altura da árvore. Em cada passo desce um nível, então no pior caso faz h comparações.
+
+b) Em uma árvore balanceada, a altura é O(log n), então a busca é eficiente. Já em uma árvore totalmente desbalanceada, a árvore vira praticamente uma lista encadeada com altura O(n), e a busca fica tão lenta quanto a busca linear.
+
+c)
+Mínimo: basta ir sempre para a esquerda a partir da raiz até chegar em um nó que não tem filho esquerdo. Esse é o menor valor.
+Máximo: basta ir sempre para a direita a partir da raiz até chegar em um nó sem filho direito. Esse é o maior valor.
+
+d) As operações de mínimo e máximo são O(h) porque em ambos os casos percorremos um caminho da raiz até uma folha, e esse caminho tem no máximo h passos, onde h é a altura da árvore.

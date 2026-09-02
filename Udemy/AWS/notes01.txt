@@ -1,0 +1,10 @@
+https://aws.amazon.com/blogs/aws/new-per-second-billing-for-ec2-instances-and-ebs-volumes/
+
+https://aws.amazon.com/shield/
+
+https://d0.awsstatic.com/whitepapers/aws_pricing_overview.pdf
+
+https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html
+
+https://aws.amazon.com/types-of-cloud-computing/
+
