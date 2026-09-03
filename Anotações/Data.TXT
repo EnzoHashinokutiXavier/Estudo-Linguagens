@@ -1,5 +1,5 @@
 
-Data Warehouse / Data Lake / Data Lakeho
+Data Warehouse / Data Lake / Data Lakehouse
 Referencia : https://www.youtube.com/watch?v=V07Pk4de-5M
 
 # Data Warehouse - repositório de dados unificado para armazenar grandes quantidades de informações de varias fontes
@@ -27,3 +27,17 @@ custo menor por gigabyte armazenado, melhor aproveitavel para uso futuro
 falta de estrutura de dados consistente e suporte transacional para ACID
 
 ACID = Atomicidade Consistencia Isolamento Durabilidade
+
+# Data Lakehouse - Economia e Flexibilidade de um Data Lake com Recursos de gerenciamento de dados, a confiabilidade e consistência de um Data Warehouse
+
+pode ser complexo de cojnstruir do 0
+
+possivel ter dados não estruturados e semi-estruturados, consultados de forma mais simples com ferramentas de machine learning e inteligencia artificial
+
+camada de armazenamento = armazenar dados em formatos abertos, pode ser chamado de datalake e é separado da camada de computação
+
+camada de computação = fornece recurso de warehouse, suporta gerenciamento de metadados, indexação, imposição de squemas e transações ACID
+
+camada de APIs = acessar assets de dados
+
+camada de serviços = suporte para varias cargas de trabalho de relatorios a BI, ciencia de dados ou aprendizado de maquina
