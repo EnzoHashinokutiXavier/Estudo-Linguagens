@@ -1,5 +1,6 @@
 
 Data Warehouse / Data Lake / Data Lakeho
+Referencia : https://www.youtube.com/watch?v=V07Pk4de-5M
 
 # Data Warehouse - repositório de dados unificado para armazenar grandes quantidades de informações de varias fontes
 
@@ -7,4 +8,22 @@ Os dados vem de várias fontes, passam pelo processo de -extrair, transformar, l
 
 ETL = Extract Transform and Load
 
-# Data Lakes ...
+pode ter problemas com dados semi estruturados e nao estruturados, dificulta para machine learning
+
+pode ser caro de manter e se tornam desatualizados, requer manutençao regular
+
+mais complicado e caro para fazer atualizações, al;tamente otimizado , uso facilitado
+
+# Data Lakes - repositorio de armazenamento centralizado altamente flexivel
+
+Dados estruturados ou não, armazenados de forma bruta original, flexivel, duravel
+
+consulta sem otimização, mas altamente acessível e rápido de atualizar, uso complexo mais difícil
+
+permite aprendizado de máquina e análise preditiva, os dados podem ficar desorganizados dificultando utilização para análise de dados e business intelligence, falta de segurança e confiabilidade de dados
+
+custo menor por gigabyte armazenado, melhor aproveitavel para uso futuro 
+
+falta de estrutura de dados consistente e suporte transacional para ACID
+
+ACID = Atomicidade Consistencia Isolamento Durabilidade
