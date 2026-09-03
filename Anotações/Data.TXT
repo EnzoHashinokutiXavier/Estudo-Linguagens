@@ -1,0 +1,10 @@
+
+Data Warehouse / Data Lake / Data Lakeho
+
+# Data Warehouse - repositório de dados unificado para armazenar grandes quantidades de informações de varias fontes
+
+Os dados vem de várias fontes, passam pelo processo de -extrair, transformar, limpar, filtrar, carregar- e vão para o data warehouse para gerar relatorios, insights e visualização de forma agrupada
+
+ETL = Extract Transform and Load
+
+# Data Lakes ...
