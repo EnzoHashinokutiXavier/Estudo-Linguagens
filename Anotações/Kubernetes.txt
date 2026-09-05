@@ -1,0 +1,30 @@
+
+Kubernetes 
+Referencia : https://www.youtube.com/watch?v=mVL0nOM3AGo
+
+Kubernetes, conhecido como K8S está ligado a área de devops
+Sistema open source de orquestração de containers para automatização de deploys escalonamento e gerenciamento de aplicações
+
+Não substitui o docker, mas orquestra os containers melhor que o orquestrador do docker
+Escalabilidade, performance e otimização dos recursos utilizados para rodar as aplicações
+
+Se encaixa com metodologias ágeis entregando de forma automatizada novas versões do sistema
+Agendar atualização do sistema e se algo der errado desfaz automaticamente
+
+Feito para trabalhar em um conjunto de containers : criação de -clusters- <https://www.youtube.com/watch?v=1cVUpoAR2Qc> 
+Pode ter centenas de containers rodando uma aplicação em uma rede, balanceando as requisições (como aws load balancer)
+Se aplicação precisar de mais recursos o orquestrador pode fornecer mais containers (como aws autoscaling)
+
+- novos releases a todo instante : implantações e atualizações mais rápidas, entrega contínua
+- escalonamento dinâmico de aplicativos : ir de um a milhares de containers rapidamente
+- service discover / balanceamento de carga / circuit breaker : permite que serviços descubram e consumam outros serviços sem agente de aplicação
+- decorative service deployment : abstração do processo de upgrade, deploy automatizado e repetivel
+
+formas de trabalhar a resiliencia da aplicação :
+- limitações de recursos (cpu, ram) por container
+- hogs em disco (cotas de disco)
+- fork bombs (limites de processo)
+- circuit breaker, time out e retentativas
+- failover e service discovery
+- hardware bulkheading
+- autoscaling e selfhealing
