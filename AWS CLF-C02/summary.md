@@ -193,3 +193,19 @@ AWS WAF is the AWS service for filtering and protecting HTTP/HTTPS traffic to we
 - **Amazon EC2**: virtual servers, which can also host containers.
 
 For the CLF-C02 exam, concentrate on the service purpose and the shared-responsibility trade-off: managed/serverless options such as Fargate reduce the infrastructure that the customer must operate.
+
+
+# AWS Encryption Services
+
+| Requirement in a question | Best answer |
+| --- | --- |
+| Create and control encryption keys | AWS KMS |
+| Use dedicated, single-tenant HSM hardware | AWS CloudHSM |
+| Store and automatically rotate database credentials | AWS Secrets Manager |
+| Store a configuration value or encrypted parameter | Systems Manager Parameter Store |
+| Issue and renew TLS/SSL certificates | AWS Certificate Manager |
+| Encrypt web traffic | HTTPS/TLS, often with ACM certificates |
+| Encrypt S3 objects with detailed key audit/control | SSE-KMS with a customer managed KMS key |
+| Encrypt an EBS volume or snapshot | Amazon EBS encryption with KMS |
+
+**KMS manages keys; CloudHSM provides dedicated HSMs; Secrets Manager stores and rotates secrets; ACM manages TLS certificates.** Then identify whether the question concerns data at rest, data in transit, key control, credential rotation, or compliance-driven hardware control.
