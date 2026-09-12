@@ -1,1 +1,4 @@
 estudos de java
+
+Boas Praticas :
+- Declarar variavel começando com letra minuscula ex : nomeSobrenome
