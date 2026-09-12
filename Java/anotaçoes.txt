@@ -1,4 +1,20 @@
 estudos de java
 
-Boas Praticas :
-- Declarar variavel começando com letra minuscula ex : nomeSobrenome
+Variaveis :
+
+- Declarar variavel começando com letra minuscula ou numero ex : nomeSobrenome123
+- nao usar caractere especial em variaveis, nao colocar espaço
+- pode usar underline nas variaveis
+
+- byte : -128 a 127 (1 byte de informação ou 8 bit)
+- short : -32768 a 32767 (2 bytes de informação ou 16 bits)
+- int : -2.147.483.648 a 2.147.483.647 (2 bilhoes, 4 bytes ou 32 bits)
+- long : -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 (8 bytes ou 64 bits)
+    valor do tipo long precisa colocar L no final ex : 123456789L
+
+- float : 7 casas decimais depois do ponto (4 bytes ou 32 bits)
+    coloca f no final ex : float real = 10.50f;
+- double : 15 casas decimais apos o ponto (8 bytes ou 64 bits)
+
+- String : texto "abc"
+- char : caractere 'a'
