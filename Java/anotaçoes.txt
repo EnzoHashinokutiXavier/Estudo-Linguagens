@@ -18,3 +18,4 @@ Variaveis :
 
 - String : texto "abc"
 - char : caractere 'a'
+- boolean : true ou false
