@@ -1,6 +1,6 @@
 estudos de java
 
-Variaveis :
+Variaveis (tipos primitivos):
 
 - Declarar variavel começando com letra minuscula ou numero ex : nomeSobrenome123
 - nao usar caractere especial em variaveis, nao colocar espaço
@@ -19,3 +19,20 @@ Variaveis :
 - String : texto "abc"
 - char : caractere 'a'
 - boolean : true ou false
+
+Classes Wrappers : 
+
+    variaveis "turbinadas"
+    tem recursos especiais
+    comparaçoes, conversoes, ...
+    primeira letra maiuscula por serem classes
+
+- Byte
+- Short
+- Integer
+    ex : Integer numero = 123
+         numero.doubleValue()
+- Long
+- Double
+- Character
+- Boolean
