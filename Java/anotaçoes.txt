@@ -45,3 +45,12 @@ Variaveis Imutaveis :
 
 - final antes do tipo (final String)
 - Escrever tudo maiusculo (NOME)
+
+
+Operadores Aritmeticos :
+
++ soma
+- subtraçao
+* multiplicaçao
+/ divisao
+% resto da divisao
