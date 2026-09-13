@@ -1,4 +1,6 @@
-estudos de java
+Estudo Java
+referencia : https://www.youtube.com/watch?v=mxDMTtCEPAY
+
 
 Variaveis (tipos primitivos):
 
@@ -20,6 +22,7 @@ Variaveis (tipos primitivos):
 - char : caractere 'a'
 - boolean : true ou false
 
+
 Classes Wrappers : 
 
     variaveis "turbinadas"
@@ -36,3 +39,9 @@ Classes Wrappers :
 - Double
 - Character
 - Boolean
+
+
+Variaveis Imutaveis : 
+
+- final antes do tipo (final String)
+- Escrever tudo maiusculo (NOME)
