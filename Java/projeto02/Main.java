@@ -24,7 +24,7 @@ public class Main{
             nome = entradaUsuario.nextLine();
             System.out.println("Ola " + entradaUsuario);
             System.out.println("Qual é a sua idade ? ");
-            Byte idade = entradaUsuario.nextByte();
+            Byte idade = entradaUsuario.nextByte(); // nextByte deve ficar pro final por nao ler proxima linha
             if (idade >= 18){
                 System.out.println("Você é maior de idade !");
             }
@@ -33,6 +33,21 @@ public class Main{
             }
             String idadeString = idade.toString();
             System.out.println("Sua idade é " + idadeString);
+        }
+
+        // Comparaçao
+        int numero1 = 10;
+        int numero2 = 20;
+        System.out.println("Numero 1 : " + numero1);
+        System.out.println("Numero 2 : " + numero2);
+        if (numero1 > numero2){
+            System.out.println("Numero 1 é maior");
+        } else if (numero1 < numero2){
+            System.out.println("Numero 2 é maior");
+        } else if (numero1 == numero2){
+            System.out.println("Numero 1 e Numero 2 são iguais");
+        } else {
+            System.out.println("Algo deu errado ...");
         }
     }
 }
