@@ -47,10 +47,18 @@ Variaveis Imutaveis :
 - Escrever tudo maiusculo (NOME)
 
 
-Operadores Aritmeticos :
+Operadores :
 
 + soma
 - subtraçao
 * multiplicaçao
 / divisao
 % resto da divisao
+== igual 
+=! diferente
+> maior
+< menor
+>= maior ou igual
+<= menor ou igual
+|| ou (or)
+&& e (and)
