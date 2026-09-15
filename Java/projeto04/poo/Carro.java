@@ -17,4 +17,23 @@ public class Carro {
     public void abastecer(){
         System.out.println("Carro abastecendo");
     }
+
+    // Getters
+    public String getCor() {
+        return cor;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    // Setters
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
 }
