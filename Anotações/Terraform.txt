@@ -1,0 +1,53 @@
+
+Terraform
+referencia : https://www.youtube.com/watch?v=0EAjJe8aPkc
+
+
+Terraform : codificar infraestrutura inteira em linguagem de configuração de auto nível
+Cria blueprint que são modelos que podem ser versionados e replicados 
+Já existem muitos modelos já criados pelos provedores cloud que podem ser utilizados
+
+Existe algumas versões incluindo : 
+- open-source : gratuito
+- cloud : facilidade de trabalhar em equipe pelas operaçoes rodar remotamente
+- selfhosted (Terraform Enterprise) : empresas com requisitos mais especiais em relaçao a sua infra
+
+IaC = Infrastructure as a Code -> crescimento devido as clouds
+
+etapas: 
+- criação de arquivos de configuração 
+- planejamento 
+- aceitação
+
+terraform.io
+instalar no windows pelo gerenciador de pacotes
+$ choco install terraform
+
+arquivo de configuraçao : HCL (Hashicorp Configuration Language) e extensao .tf\
+declarar recursos da infraestrutura, simples de entender e manter
+CLI do terraform para executar os comandos 
+
+terraform {
+    configuraçoes da propria ferramenta
+}
+provider {
+    configuraçoes especificas do provedor
+}
+resource {
+    definir componentes da infraestrutura
+}
+
+inicializar 
+$ terraform init 
+baixa os providers
+
+planejamento 
+$ terraform plan
+retorna plano de execuçao 
+
+$ terraform apply
+apresenta comando de execuçao e pede confirmaçao antes de executar qualquer açao
+
+Com essa ferramenta é possível destruir uma infraestrutura
+$ terraform plan --destroy    // ter certeza que vai eliminar apenas oq é preciso
+$ terraform destroy
