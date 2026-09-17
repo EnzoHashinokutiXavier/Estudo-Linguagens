@@ -26,4 +26,7 @@ public class Veiculo {
         System.out.println(veiculo + " tem a cor " + cor + ", a plca é " + placa);
     }
 
+    protected void guincho(){
+        System.out.println("Chamando guincho");
+    }
 }

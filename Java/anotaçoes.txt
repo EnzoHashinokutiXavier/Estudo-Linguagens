@@ -62,3 +62,10 @@ Operadores :
 <= menor ou igual
 || ou (or)
 && e (and)
+
+
+Modificadores de acesso :
+
+- public : todas as classes terão acesso
+- private : só pode ser acessado de dentro da classes
+- protected : acessavel pela subclasse

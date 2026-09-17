@@ -8,4 +8,12 @@ public class Carro extends Veiculo{
         super(cor, placa);
     }
     
+    public void revisao(){
+        System.out.println("Encontramos um problema !");
+        manutencao();
+    }
+
+    private void manutencao(){
+        System.out.println("fazendo manutenção");
+    }
 }

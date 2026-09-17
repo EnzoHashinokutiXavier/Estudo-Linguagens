@@ -11,4 +11,9 @@ public class Moto extends Veiculo{
     public void grau(){
         System.out.println("Oia o grau randandandandan");
     }
+
+    public void acidente(){
+        System.out.println("Sofreu acidente !");
+        guincho();
+    }
 }

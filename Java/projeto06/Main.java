@@ -6,9 +6,11 @@ public class Main {
 
         Carro carro1 = new Carro("Amarelo", "AAA111");
         carro1.abastecer("carro", "gasolina");
+        carro1.revisao();
 
         Moto moto1 = new Moto("Azul", "BBB222");
         moto1.acelerar("Moto");
         moto1.grau();
+        moto1.acidente();
     }
 }
