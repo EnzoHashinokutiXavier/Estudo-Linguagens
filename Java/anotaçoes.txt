@@ -69,3 +69,9 @@ Modificadores de acesso :
 - public : todas as classes terão acesso
 - private : só pode ser acessado de dentro da classes
 - protected : acessavel pela subclasse
+
+
+Herança x Interface :
+
+Na herança voce é livre para usar apenas os metodos que quiser no objeto, 
+na interface voce é obrigado a utilizar todos metodos
