@@ -1,0 +1,55 @@
+
+Design Patterns
+referencia : https://www.youtube.com/watch?v=J-lHpiu-Twk
+
+Paradigmas interligados a POO
+São soluções de problemas que acontecem regularmente no dia a dia do programador
+
+Surgiram em experiencias de muitos projetos de software
+
+Erick Richard Ralf e John catalogaram os padrões em um livro
+Gang of for (GOF)
+
+23 patterns divididos em 3 grupos
+
+- Creational Patterns : padroes de criaçao
+    construção do objeto e de referencia
+    "programe para interface e nao para implementaçãoes"
+
+- Structural Patterns : padroes estruturais
+    relação entre os objetos e como intgeragem para formar grandes objetos complexos
+
+- Behavioral Patterns : padroes comportamentais
+    comunicação entre os objetos, especialmente em termos de responsabilidade e algoritmos
+
+Os padroes servem para facilitar manutenção do código e entender código alheio
+
+
+# Creational Patterns
+- Abstract Factory : cria familias de objetos com onthefly com alta flexibilidade
+- Builder : constrói o produto passo a passo
+- Factory Method : cria objetos onthefly com alta flexibilidade
+- Prototype : cria objetos por cópia de uma instancia
+- Singleton : centraliza e compartilha recursos
+
+# Structural Patterns
+- Adapter : pluga o conteudo ao sistema
+- Bridge : separa implementaçãoes de abstrações em prol da flexibilidade
+- Composite : trata todos objetos de forma justa
+- Decorator : incrementa funcionalidades dinamicamente
+- Facade : simplifica a utilização de sistemas complexos
+- Flyweight : compartilha de pequenos recursos para economizar espaço
+- Proxy : faz um objeto representar um outro objeto
+
+# Behavioral Patterns
+- Chain of responsibility : repassa requisições para evitar decisões
+- Command : trnasforma requisições em objetos
+- Interpreter : define uma gramática e um interpretador
+- Iterator : percorre um conjunto de dados independente da implementação 
+- Mediator : simplificador de relacionamentos complexos 
+- Memento : esternaliza estados sem quebrar o encapsulamento
+- Observer : compartilhamento de recursos de maneira inteligente
+- State : simplifica a troca de estados internos de um objeto
+- Strategy : separa os dados do algoritmo para alcançar a reusabilidade
+- Template Method : define algoritmos estensiveis
+- Visitor : define uma nova operação para uma classe sem alterala
