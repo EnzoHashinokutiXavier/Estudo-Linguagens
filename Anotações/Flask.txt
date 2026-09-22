@@ -1,0 +1,35 @@
+
+
+Flask - web development, one drop at a time
+referencia : https://www.youtube.com/watch?v=e9EPb5AoMf8
+
+simplicidade, rapidez de desenvolvimento, velocidade e desempenho, micro serviços e APIs
+
+basico e presa por coisas feitas aos poucos
+
+tres dependencias principais : rotas, debugging, web server gateway interface
+
+diferencia de outros frameworks ao evitar instalar por padrao modulos desnecessarios no projeto
+deixa na mao do desenvolvedor maior poder de escolha
+por padrao nao inclui : 
+- camada de abstração de banco de dados
+- validação de formulários
+- gerenciamento de upload
+- tecnologias de autenticação 
+é bom para iniciantes pois torna a curva de aprendizado mais suave
+
+lançado em 2010, open source
+https://github.com/pallets/flask
+
+inicialmente era apenas um wrapper que unia Werkzeug e Jinja
+ 
+Werkzeug - uma das mais avançadas bibliotecas WSGI (Web server gateway interface)
+Jinja - template language, html com parte statica e dinamica para inclusao de variaveis e expressoes\
+
+Flask usa jinja para renderizar templates para transformar em html puro
+Sintaxe do jinja é similar a do django
+{% if ou for %}
+{{ variaveis|podendo usar filtros e funçoes}}
+{# comentarios #}
+
+django tem vantagem sobre o flask para desenvolvimento de projetos mais complexos
