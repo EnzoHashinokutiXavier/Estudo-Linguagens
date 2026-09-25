@@ -1,0 +1,9 @@
+POO
+
+Paradigma estruturado -> forma tradicional de fazer a programação, organizando em variáveis e funções
+- paradigma procedural colocava pouca organização sobre os dados 
+- no paradigma estruturado os dados e as funções são isolados no programa
+
+POO : Programação Orientada a Objetos, um modelo de desenvolvimento de software que organiza o código usando "objetos" inspirados no mundo real.
+Classes -> agrupa variáveis e funções com novos nomes : atributos e métodos
+Objetos -> variável de uma classe criado pelo processo de instanciação
