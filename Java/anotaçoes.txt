@@ -75,3 +75,153 @@ Herança x Interface :
 
 Na herança voce é livre para usar apenas os metodos que quiser no objeto, 
 na interface voce é obrigado a utilizar todos metodos
+
+
+Comentario :
+
+...codigo... // daqui até o final da linha é um comentario
+
+/* essas linhas
+   são
+   um comentário */
+
+/**
+* Comentario de documentação
+* @algo faz algo
+*/
+
+
+Métodos :
+
+<modificador> public, protected e private
+<retorno> tipo de valor retornado
+<nome> nome do método 
+<argumentos> variaveis passadas na chamada do metodos
+
+ex:
+// modificador retorno nome argumentos
+public int dobro(int x){
+    x = x*2;
+    return x;
+}
+
+
+Métodos construtores :
+
+atribuir valores a uma instancia de uma classe
+
+ex:
+// construtor de carro
+public Carro(String nome, String cor, String placa, int numeroChassi) {
+    this.nome = nome;
+    this.cor = cor;
+    this.placa = placa;
+    this.numeroChassi = numeroChassi;
+}
+// Criando e preenchendo uma instancia de carro
+Carro palio = new Carro("Palio", "Azul", "DDD-9999", 10001);
+pailo.print();
+
+
+Validar valor informado : 
+
+ex:
+public void setCor(String cor){
+    String cores[] = {"Azul", "Amarelo", "Vermelho", ... };
+    for (int i = 0; i < cores.lenght; i++){
+        if (cores[i].equals(cor)){
+            // se encontrou a cor no array
+            this.cor = cor;
+            return;
+        }
+    }
+}
+
+
+Setters : 
+
+define valor
+
+ex:
+public void setPlaca(String placa){
+    this.placa = placa;
+}
+
+
+Getters : 
+
+recebe valor
+
+ex:
+public String getPlaca(){
+    return placa;
+}
+
+
+Herança :
+
+recebe atributos e métodos de uma classe maior
+
+ex:
+public class Funcionario extends Pessoa{
+}
+
+
+Polimorfismo :
+
+herdar mais de uma classe
+ex : supervisor que herda de funcionario que herda de Pessoa
+
+
+Override :
+
+Sobrescrever um método existente na classe pai
+
+
+Classe abstrata : 
+
+não permite variáveis contendo instancias dela 
+
+ex: cada animal é agrupado como animal mas nao pode existir um ser que seja apenas animal (ex animal cachorro)
+
+public abstract class Animal {
+    public String nome;
+    public int patas;
+}
+
+
+Métodos abstratos :
+
+classe pai fornece apenas assinatura, delega o fornecimento da implementação a classe filha
+
+ex : todo animal anda, mas cada um de um jeito diferente
+public abstract void andar();
+
+
+Interfaces :
+
+no java uma classe filha so pode herdar uma classe pai
+interface cria comportamento comum entre classes
+são como classes abstratas mas so pode declarar metodos abstratos
+um contrato que define uma série de métodos que uma classe deve implementar
+
+ex:
+public interface CSVGenerator {
+    public String toCSV();
+}
+
+public class Pessoa implements CSVGenerator{
+    ...
+    @Override 
+    public String toCSV(){
+        ...
+    }
+}
+
+
+Pacotes :
+
+forma que o Java organiza suas bibliotecas no sistema
+ao contrario da url 
+ex: br/meusite/entidades/Pessoa
+import br.meusite.entidades.Pessoa
